@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 
 import Header from '../components/header'
 import './index.scss'
+require("prismjs/themes/prism-okaidia.css");
 
 const Layout = ({ children, data }) => (
   <div>
