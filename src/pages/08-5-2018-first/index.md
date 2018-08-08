@@ -1,22 +1,22 @@
 ---
 path: '/first-post'
-title: 'First Blog Post'
+title: 'Hello World!'
+date: '8/7/18'
 ---
 
 
 ---
 
-## Hello World!
 
 I feel a bit foolish for not starting what I hope to be
 a fruitful blogging career a bit sooner, but such is
 life. The fact is here we are, I am writing and you 
-are reading what I write through a very fast static-site generator, so perhaps the wait was worth it. This also happens to be `markdown`, which makes it very easy to do things like this:
+are reading what I write through a very fast static-site generator, so perhaps the wait was worth it. This also happens to be markdown, which makes it very easy to do things like this:
 
 ```javascript
 function CodeSnippet(bool) {
   let inline = bool;
-  return blockCode() {
+  return function blockCode() {
     return `Markdown's block code is ${ inline ? 'awesome' : 'really awesome' }`
   }
 }
@@ -35,8 +35,7 @@ When I build a boilerplate I know precisely how the server works, what is happen
 
 ## Is Gatsby cheating?
 
-Pretending I am qualified to have any sort of valuable opinion on this contrived question I am using for click-bait-esque purposes on my first blog post, I would say that the answer is -- *depends*.
-
+Pretending I am qualified to have any sort of valuable opinion on this contrived question I am using for click-bait-esque purposes on my first blog post, I would say that the answer is -- *depends*. For instance, if you want a Markdown friendly, static site without having to configure Jekyll and learn Ruby, then, no, it is not cheating
 
 
 
