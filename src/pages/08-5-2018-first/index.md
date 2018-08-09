@@ -1,7 +1,7 @@
 ---
 path: '/first-post'
 title: 'Hello World!'
-date: '8/7/18'
+date: '8-7-18'
 ---
 
 
@@ -26,8 +26,7 @@ As well as other things, like adding
 font-accents that are **100%** *necessary.*
 
 
-Although all this stuff is well and **great**, I must admit I do feel like a bit of an imposter. And no, not the dreaded *Imposter Syndrome* that is so often discussed on places like Reddit (although I probably don't know enough about programming to even know if I'm an imposter) (aside: I just noticed VScode autotmatically wraps your code in markdown, so add that to the ~~benefits~~ awesomeness of both MD and VScode), but moreso over the fact that I am using someone elses boilerplate -- Gatsby does so much right out of the box, it's a bit unnerving to be honest. I did some npm installs and it was essentially a complete product. I can add
-to it as I wish, but I often like building my own boilerplates because it provides me with a strong understanding of how things are actually working behind the scenes. There is just something so distinctly different between starting from a fresh package.json and npm installing an essentially complete product.
+Although all this stuff is well and **great**, I must admit I do feel like a bit of an phony (pardon the salty language) for using the Gatsby starter project for this site. I did some npm installs and it was essentially a complete product. I haven't ran into any serious issues in terms of doing what I want, but there is just something so distinctly different between starting from a fresh package.json and npm installing an essentially complete product.
 
 When I build a boilerplate I know precisely how the server works, what is happening in the development and production builds, how Redux is delivering the data. However, in this new and, at the moment, fairly opaque realm of Gatsby with its GraphQL and layouts, I don't feel that deep understanding -- I don't feel a  *connection* with the code. Nonetheless, here we are, me writing and you reading, performance is incredible, and this is **React!** and I'm on **Windows!!** Basically it is win/win for you as the user and me as the developer, so is there really anything to be concerned about here?
 
@@ -35,7 +34,7 @@ When I build a boilerplate I know precisely how the server works, what is happen
 
 ## Is Gatsby cheating?
 
-Pretending I am qualified to have any sort of valuable opinion on this contrived question I am using for click-bait-esque purposes on my first blog post, I would say that the answer is -- *depends*. For instance, if you want a Markdown friendly, static site without having to configure Jekyll and learn Ruby, then, no, it is not cheating
+Pretending I am qualified to have any sort of valuable opinion on this contrived question I am using for click-bait-esque purposes on my first blog post, I would say that the answer is -- you'll know soon enough. For instance, my lack of familiarity with GraphQL is causing me some issues.
 
 
 

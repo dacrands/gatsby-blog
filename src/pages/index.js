@@ -39,7 +39,6 @@ const LandingContainer = styled.div`
 
 const Ul = styled.ul`
   list-style: none;
-  border: 1px solid #dadada;
   margin: 0;  
 `;
 
