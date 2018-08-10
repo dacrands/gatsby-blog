@@ -78,12 +78,18 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  // display: inline-block;  
+  // outline: 3px dashed red;
+  display: flex;
+  // flex-direction: column;
+  // justify-content: space-around;  
   margin: .75rem .525rem;
+  h3 {
+    margin-right: .75rem;
+  }
 `;
 
 const StyledLink = styled(Link)`
-  display: block;
+  // display: block;
   padding: .6rem;
   border: 1px solid #dadada;
   text-align: center;
@@ -165,11 +171,12 @@ const IndexPage = ({ data }) => (
         {
           data.allMarkdownRemark.edges.map(post => (
             <Li>
+              <h3>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</h3>            
               <StyledLink 
                 to={post.node.frontmatter.path}
               >
                 {post.node.frontmatter.title}
-              </StyledLink>              
+              </StyledLink>                
             </Li>
           ))
         }
@@ -181,10 +188,8 @@ const IndexPage = ({ data }) => (
       <Landing Landing bg="rgb(35,40,45)">
       </Landing>
         <LandingContainer>
-        <H1 color="#f6f6f6">Projects</H1>
-        
-        </LandingContainer>
-      
+          <H1 color="#f6f6f6">Projects</H1>        
+        </LandingContainer>      
     </LandingWrapper>
     
     

@@ -9,7 +9,9 @@ I'm not a big fan of CSS-in-JS. When I see style objects in components it feels 
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Raven_Matrix.svg/290px-Raven_Matrix.svg.png)
 
-Perhaps the primary issue is feeling bound to the component. This may reflect my lack of familiarity with CSS-in-JS design conventions, but when I think of writing designs, I think of writing styles I can reuse throughout many components. To me, inline styles are the antithesis of what I think good CSS should be -- reuasble. 
+
+
+Perhaps the primary issue is feeling bound to the component. This may reflect my lack of familiarity with CSS-in-JS design conventions, but when I think of writing designs, I think of writing styles I can reuse throughout many components, that span the document. To me, inline styles are the antithesis of what I think good CSS should be -- reuasble. 
 
 ### Introducing styled-components
 I believe keeping an open-mind is important. That said, as I was learning about this Gatsby stuff I came across a rather intriguing technology that had me rethink this whole CSS-in-JS way of life. 
