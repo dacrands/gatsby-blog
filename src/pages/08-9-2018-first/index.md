@@ -13,6 +13,7 @@ I'm not a big fan of CSS-in-JS. When I see style objects in components it feels 
 
 Perhaps the primary issue is feeling bound to the component. This may reflect my lack of familiarity with CSS-in-JS design conventions, but when I think of writing designs, I think of writing styles I can reuse throughout many components, that span the document. To me, inline styles are the antithesis of what I think good CSS should be -- reuasble. 
 
+
 ### Introducing styled-components
 I believe keeping an open-mind is important. That said, as I was learning about this Gatsby stuff I came across a rather intriguing technology that had me rethink this whole CSS-in-JS way of life. 
 
@@ -44,7 +45,9 @@ const StyledLink = styled(Link)`
 `;
 ```
 
-Take note that we're writing CSS, not JS, inside our JS! Let's take a look at how this would appear in our React.   
+Take note that we're writing CSS, not JS, inside our JS! Why am I so jazzed about this? Because I feel at home when I read and write styles in CSS. Of course this means you'll need to download a new vscode plugin, [which you can find here](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components).
+
+Let's take a look at how this would appear in our React.   
 
 
 ```html
@@ -63,7 +66,7 @@ Take note that we're writing CSS, not JS, inside our JS! Let's take a look at ho
 </Ul>
 ```
 
-Pretty cool right? Although we miss out on the ultra-readability provided by BEM, we have semantic components -- ergo readable code -- that can be reused and we don't need an inline style tag or a style object. 
+Pretty cool right? Although we miss out on the ultra-readability provided by something like BEM, the code is still readable since we have **semantic** components that can be reused. Also note how clean our components are. We don't have any classNames, style objects, or style props. Visually, our CSS is more removed from our JS than it would be if we were to use conventional CSS selectors. What really counts is the quality of our component names, which is within our control.
 
 ### Now the good stuff
 
@@ -91,22 +94,24 @@ const ExtendedContainer = Container.extend.attrs({
   }
 `;
 ```
-First let's take note of the `.extend`
+First let's take note of *.extend*
 
-By creating a new component with a semantically rich name, we keep our code readable. Contrast this with providing a style object to a `Container` component, where the CSS needs to be deciphered in order to understand what the container is doing. 
+By using extend we can continue to generate semantically rich components while keeping our code DRY. Furthermore, this inheritance allows us to, once again, keep all references to an component's styles within the component name. I'm using *\<ExtendedContainer\>* for the demonstrative purposes, but you can understand the power of something like *\<FlexContainer\>* extending a *\<Container\>* style-component. 
 
-Also take note of the nesting. How awesome is that?
+Also take note of the nesting. Yes, styled-components supports Sass!
 
-Now let's take look at what is going on with that `attrs` method.
+Now let's take look at what is going on with that *.attrs* method.
 
 ```html
 <ExtendedContainer bg="#dadada" height="50vh">
   // You'd have child components here
 </ExtendedContainer>
 ```
+So there may be some cases were props makes sense. If a component's only task is providing styles, such as a container component which makes an elaborate grid, it makes sense to pass styles through props since ultimately these props get sent to our CSS. In other words, we wouldn't expect to see any *onClick* or *to* events on these components since they are strictly for stylings.
 
-So
-I'm just starting out with this and am not sure if I'd use it outside of Gatsby, but it's very funny to work with in the meantime. 
+
+### Final Thoughts
+I'm just starting out with this and am not sure if I'd use it outside of Gatsby, but it's very funny to work with in the meantime. The idea of having super clean components and JSX through styled containers, extending components, and intelligent use of props, is very cool.
 
 
 

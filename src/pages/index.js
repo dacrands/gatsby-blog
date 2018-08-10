@@ -12,6 +12,7 @@ const LandingWrapper = styled.div.attrs({
   height: props => props.height || '40vh'
 })`
   position: relative;
+  height: 100%;
   min-height: ${props => props.height}   
 `;
 
@@ -42,6 +43,8 @@ const LandingContainer = styled.div.attrs({
 })`
   margin: 0 auto;
   max-width: 960px;
+  margin-top: -1.45rem;
+  margin-bottom: 1.45rem;
   height: 100%;
   min-height: ${props => props.height} 
   display: flex;
@@ -57,7 +60,7 @@ const ThreeContainer = LandingContainer.extend.attrs({
   padding-bottom: 1.45rem;
   flex-direction: row;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   h3 {
     // color: #dadada;
@@ -80,7 +83,7 @@ const Ul = styled.ul`
 const Li = styled.li`
   // outline: 3px dashed red;
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   // justify-content: space-around;  
   margin: .75rem .525rem;
   h3 {
@@ -89,13 +92,17 @@ const Li = styled.li`
 `;
 
 const StyledLink = styled(Link)`
-  // display: block;
+  display: flex;
   padding: .6rem;
   border: 1px solid #dadada;
   text-align: center;
+  justify-content: space-between;
   transition: all 200ms ease;
+  text-decoration: none;
+  color: #dadada;
   &:hover {
-    background: #dadada;
+    background: #ffffff;
+    color: #1d669b;
   }
 `;
 
@@ -113,8 +120,8 @@ const Box = styled.div`
 
 const IndexPage = ({ data }) => (
   <div>
-    <LandingWrapper>    
-      <LandingContainer>        
+    <LandingWrapper height="60vh">    
+      <LandingContainer height="60vh">        
         <H1>
           Full-stack Node developer          
         </H1>
@@ -165,34 +172,27 @@ const IndexPage = ({ data }) => (
     </LandingWrapper>
     
     <LandingWrapper>
+    <Landing Landing bg="rgb(35,40,45)">
+      </Landing>
       <LandingContainer>
-      <H1>Blog</H1>
+      <H1 color="#f6f6f6">Blog</H1>
       <Ul>    
         {
           data.allMarkdownRemark.edges.map(post => (
             <Li>
-              <h3>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</h3>            
+                          
               <StyledLink 
                 to={post.node.frontmatter.path}
-              >
-                {post.node.frontmatter.title}
+              >    
+                <h3>{post.node.frontmatter.title}</h3>                            
+                <h3>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</h3>
               </StyledLink>                
             </Li>
           ))
         }
       </Ul>
       </LandingContainer>
-    </LandingWrapper>
-
-    <LandingWrapper>
-      <Landing Landing bg="rgb(35,40,45)">
-      </Landing>
-        <LandingContainer>
-          <H1 color="#f6f6f6">Projects</H1>        
-        </LandingContainer>      
-    </LandingWrapper>
-    
-    
+    </LandingWrapper>  
   
   </div>
 )
