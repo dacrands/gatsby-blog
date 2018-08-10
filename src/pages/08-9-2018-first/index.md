@@ -1,40 +1,110 @@
 ---
-path: '/first-post'
-title: 'Hello World!'
-date: '8-7-18'
+path: '/8-9-18'
+title: 'Styled Components'
 ---
 
-
 ---
 
+I'm not a big fan of CSS-in-JS. When I see style objects in components it feels out of place, sort of like those iq tests where you have to find the item that doesn't belong.
 
-I feel a bit foolish for not starting what I hope to be
-a fruitful blogging career a bit sooner, but such is
-life. The fact is here we are, I am writing and you 
-are reading what I write through a very fast static-site generator, so perhaps the wait was worth it. This also happens to be markdown, which makes it very easy to do things like this:
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Raven_Matrix.svg/290px-Raven_Matrix.svg.png)
+
+Perhaps the primary issue is feeling bound to the component. This may reflect my lack of familiarity with CSS-in-JS design conventions, but when I think of writing designs, I think of writing styles I can reuse throughout many components. To me, inline styles are the antithesis of what I think good CSS should be -- reuasble. 
+
+### Introducing styled-components
+I believe keeping an open-mind is important. That said, as I was learning about this Gatsby stuff I came across a rather intriguing technology that had me rethink this whole CSS-in-JS way of life. 
+
+I'm talking about [styled-components](https://www.styled-components.com/). Let's take a look at some examples. 
+
+*All of these code snippets are taken from the code I used to create the landing page of this site (with some slight modifications for the purposes of this blog).*
 
 ```javascript
-function CodeSnippet(bool) {
-  let inline = bool;
-  return function blockCode() {
-    return `Markdown's block code is ${ inline ? 'awesome' : 'really awesome' }`
+import styled from 'styled-components';
+
+const Ul = styled.ul`
+  list-style: none;
+  margin: 0;  
+`;
+
+const Li = styled.li` 
+  margin: .75rem .525rem;
+`;
+
+const StyledLink = styled(Link)`
+  display: block;
+  padding: .6rem;
+  border: 1px solid #dadada;
+  text-align: center;
+  transition: all 200ms ease;
+  &:hover {
+    background: #dadada;
   }
-}
+`;
 ```
 
-As well as other things, like adding
-font-accents that are **100%** *necessary.*
+Take note that we're writing CSS, not JS, inside our JS! Let's take a look at how this would appear in our React.   
 
 
-Although all this stuff is well and **great**, I must admit I do feel like a bit of an phony (pardon the salty language) for using the Gatsby starter project for this site. I did some npm installs and it was essentially a complete product. I haven't ran into any serious issues in terms of doing what I want, but there is just something so distinctly different between starting from a fresh package.json and npm installing an essentially complete product.
+```html
+<Ul>    
+  {
+    data.allMarkdownRemark.edges.map(post => (
+      <Li>
+        <StyledLink 
+          to={post.node.frontmatter.path}
+        >
+          {post.node.frontmatter.title}
+        </StyledLink>              
+      </Li>
+    ))
+  }
+</Ul>
+```
 
-When I build a boilerplate I know precisely how the server works, what is happening in the development and production builds, how Redux is delivering the data. However, in this new and, at the moment, fairly opaque realm of Gatsby with its GraphQL and layouts, I don't feel that deep understanding -- I don't feel a  *connection* with the code. Nonetheless, here we are, me writing and you reading, performance is incredible, and this is **React!** and I'm on **Windows!!** Basically it is win/win for you as the user and me as the developer, so is there really anything to be concerned about here?
+Pretty cool right? Although we miss out on the ultra-readability provided by BEM, we have semantic components -- ergo readable code -- that can be reused and we don't need an inline style tag or a style object. 
 
-#### *tl:dr; I feel like a scam for using a preconfigured project. Is my shame legitimate or am I just a victim of low self-esteem?*
+### Now the good stuff
 
-## Is Gatsby cheating?
+Of course, that's not all styled-components can do -- if it were, we wouldn't be here right now. Let's take a look at some more use cases.
 
-Pretending I am qualified to have any sort of valuable opinion on this contrived question I am using for click-bait-esque purposes on my first blog post, I would say that the answer is -- you'll know soon enough. For instance, my lack of familiarity with GraphQL is causing me some issues.
+```javascript
+const Container = styled.div`
+  max-width: 960px;
+  margin: 0 auto;  
+`;
+
+const ExtendedContainer = Container.extend.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '40vh'
+})`  
+  min-height: ${props => props.height}
+  background: ${props => props.background}
+  padding-bottom: 1.45rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  h3 {
+    margin-bottom: 6px;
+  }
+`;
+```
+First let's take note of the `.extend`
+
+By creating a new component with a semantically rich name, we keep our code readable. Contrast this with providing a style object to a `Container` component, where the CSS needs to be deciphered in order to understand what the container is doing. 
+
+Also take note of the nesting. How awesome is that?
+
+Now let's take look at what is going on with that `attrs` method.
+
+```html
+<ExtendedContainer bg="#dadada" height="50vh">
+  // You'd have child components here
+</ExtendedContainer>
+```
+
+So
+I'm just starting out with this and am not sure if I'd use it outside of Gatsby, but it's very funny to work with in the meantime. 
 
 
 

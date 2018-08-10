@@ -1,7 +1,6 @@
 ---
-path: '/second-post'
+path: '/8-6-18'
 title: 'Learning to program'
-date: '8-7-18'
 ---
 
 ___

@@ -1,7 +1,6 @@
 ---
-path: '/first-post'
+path: '/8-5-18'
 title: 'Hello World!'
-date: '8-7-18'
 ---
 
 

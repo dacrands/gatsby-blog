@@ -91,8 +91,7 @@ const StyledLink = styled(Link)`
   &:hover {
     background: #dadada;
   }
-
-`
+`;
 
 const Box = styled.div`
   text-align: center;

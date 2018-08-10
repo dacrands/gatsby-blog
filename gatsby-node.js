@@ -23,7 +23,6 @@
           frontmatter {
             path
             title
-            date
           }
         }
       }
