@@ -7,6 +7,12 @@ module.exports = {
     `gatsby-plugin-sass`,
     'gatsby-transformer-remark',
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+          include: /assets/
+      }
+    },    
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/pages`,

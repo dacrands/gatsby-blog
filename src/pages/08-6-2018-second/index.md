@@ -17,7 +17,7 @@ We work on our projects, we err, and err, and err again, then we get our big win
 
 I was so naive when I first started learning to program. I remember creating an HTML document in Notepad where I changed the color of an h1 containing my name and feeling as though I was ready to apply to programming jobs -- *I wrote something that I can open in Chrome, I am invincible!* 
 
-Of course this is humorous when one considers what it takes to land a developer job, but it reflects that people who don't study programming are completely clueless about this stuff. Generating something that is rendered in a browser elicits a powerful feeling; this feeling gives people a false sense of accomplishment precisely because the internet is so enigmatic. It's not until people look to broaden their knowledge that the iceberg is uncovered, time spent googling things like closures and inheritance increases, and time spent socializing decreases. 
+Of course this is humorous when one considers what it takes to land a developer job, but it reflects that people who don't study programming are completely clueless about this stuff. Generating something that is rendered in a browser elicits a powerful feeling; this feeling gives people a false sense of accomplishment precisely because the internet is so enigmatic. It's not until people look to broaden their knowledge that the iceberg is uncovered, time spent googling things like closures and inheritance increases, and time spent socializing decreases. ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Iceberg_in_the_Arctic_with_its_underside_exposed.jpg/1200px-Iceberg_in_the_Arctic_with_its_underside_exposed.jpg) 
 
 
 ### It will get better and faster (not just your websites)

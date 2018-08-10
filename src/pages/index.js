@@ -3,39 +3,74 @@ import Link from 'gatsby-link'
 
 import styled from 'styled-components';
 
-const LandingWrapper = styled.div`
-  min-height: 40vh;    
-  
+import CodeSvg from '../assets/code.svg';
+import Tool from '../assets/tool.svg';
+import Framework from '../assets/framework.svg';
+
+const LandingWrapper = styled.div.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '40vh'
+})`
+  position: relative;
+  min-height: ${props => props.height}   
 `;
 
 const Landing = styled.main.attrs({
-  background: props => props.bg || '#ffffff'
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '40vh'
 })`
-  min-height: 40vh;
+  min-height: ${props => props.height}
   position: absolute;    
-  margin-top: -1.45rem;
-  left: 0;
-  right: 0;    
-  background: ${props => props.background}
+  z-index: -1;
+  margin-top: -1.45rem;  
+  width: 500%;    
+  margin-left: -200%;
+  height: 100%;  
+  background: ${props => props.background};  
 `;
 
-const Title = styled.h1.attrs({
+const H1 = styled.h1.attrs({
   color: props => props.color || '#1d669b'
 })`
   color: ${props => props.color}
   // color: white;
 `;
 
-const LandingContainer = styled.div`
+const LandingContainer = styled.div.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '40vh'
+})`
   margin: 0 auto;
   max-width: 960px;
-  padding: 1.45rem 1.0875rem;
   height: 100%;
-  min-height: 40vh;  
+  min-height: ${props => props.height} 
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
+
+const ThreeContainer = LandingContainer.extend.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '40vh'
+})`  
+  min-height: ${props => props.height}
+  padding-bottom: 1.45rem;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    // color: #dadada;
+    margin-bottom: 6px;
+  }
+`;
+
+const H3 = styled.h3.attrs({
+  weight: props => props.weight || ''
+})`
+  font-weight: ${props => props.weight};
+`;
+
 
 const Ul = styled.ul`
   list-style: none;
@@ -59,59 +94,98 @@ const StyledLink = styled(Link)`
 
 `
 
-const DarkLandingContainer = LandingContainer.extend`
-  color: #f9f9f9;
-`
+const Box = styled.div`
+  text-align: center;
+  // color: #dadada;
+  // display: flex;
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+  margin: 0 .475rem;
+`;
+
 
 const IndexPage = ({ data }) => (
   <div>
-  <LandingWrapper>
-    <Landing bg="#f6f6f6">
-      <LandingContainer>
-        {/* <Title>About</Title> */}
-        <Title>
+    <LandingWrapper>    
+      <LandingContainer>        
+        <H1>
           Full-stack Node developer          
-        </Title>
-        {/* <hr/> */}
-        <h4>
+        </H1>
+        <H3 weight="400">
           I build Node apps that are fast and responsive.
-        </h4>
-        <h4>
-          I spend most of my time
-          using Node, React, Redux, MongoDB, Webpack, and Sass.
-        </h4>
+        </H3>
       </LandingContainer>
-    </Landing>
     </LandingWrapper>
-    {/* <Link to="/page-2/">Go to page 2</Link> */}
+
+    <LandingWrapper>   
+      <Landing bg="#f4f4f4" />
+      {/* <H1>Skills</H1> */}
+      <ThreeContainer>              
+        <Box>
+          <CodeSvg 
+            style={{
+              width: "100px",
+              height: "70px",
+              fill: "#1d669b"
+            }}
+          />  
+          <h3>Lanuages</h3>
+          <p>Javascript, Python, HTML, CSS</p>
+        </Box>
+        <Box>
+          <Framework 
+            style={{
+              width: "100px",
+              height: "70px",
+              fill: "#1d669b"
+            }}
+          />  
+          <h3>Frameworks</h3>
+          <p>React, Redux, Sass, MongoDB, Express</p>
+        </Box>
+        <Box>
+          <Tool
+            style={{
+              width: "100px",
+              height: "70px",
+              fill: "#1d669b"
+            }}
+          />    
+          <h3>Tools</h3>           
+          <p>Webpack, Git, VSCode</p>
+        </Box>
+      </ThreeContainer>    
+    </LandingWrapper>
+    
     <LandingWrapper>
-      <Landing>
-        <LandingContainer>
-        <Title>Blog</Title>
-        <Ul>    
-          {
-            data.allMarkdownRemark.edges.map(post => (
-              <Li>
-                <StyledLink 
-                  to={post.node.frontmatter.path}
-                >
-                  {post.node.frontmatter.title}
-                </StyledLink>              
-              </Li>
-            ))
-          }
-        </Ul>
-        </LandingContainer>
-      </Landing>
+      <LandingContainer>
+      <H1>Blog</H1>
+      <Ul>    
+        {
+          data.allMarkdownRemark.edges.map(post => (
+            <Li>
+              <StyledLink 
+                to={post.node.frontmatter.path}
+              >
+                {post.node.frontmatter.title}
+              </StyledLink>              
+            </Li>
+          ))
+        }
+      </Ul>
+      </LandingContainer>
     </LandingWrapper>
 
     <LandingWrapper>
       <Landing Landing bg="rgb(35,40,45)">
+      </Landing>
         <LandingContainer>
-        <Title color="#f6f6f6">Projects</Title>
+        <H1 color="#f6f6f6">Projects</H1>
         
         </LandingContainer>
-      </Landing>
+      
     </LandingWrapper>
     
     
