@@ -5,7 +5,7 @@ export default function Template({ data }){
   const { markdownRemark: post } = data; 
 
   return (
-    <div>
+    <div style={{paddingBottom: "1.45rem"}}>
       <h1>{post.frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{__html: post.html}} />
     </div>

@@ -9,16 +9,16 @@ import Framework from '../assets/framework.svg';
 
 const LandingWrapper = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '40vh'
+  height: props => props.height || '55vh'
 })`
   position: relative;
   height: 100%;
   min-height: ${props => props.height}   
 `;
 
-const Landing = styled.main.attrs({
+const Landing = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '40vh'
+  height: props => props.height || '55vh'
 })`
   min-height: ${props => props.height}
   position: absolute;    
@@ -39,7 +39,7 @@ const H1 = styled.h1.attrs({
 
 const LandingContainer = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '40vh'
+  height: props => props.height || '55vh'
 })`
   margin: 0 auto;
   max-width: 960px;
@@ -54,10 +54,10 @@ const LandingContainer = styled.div.attrs({
 
 const ThreeContainer = LandingContainer.extend.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '40vh'
+  height: props => props.height || '55vh'
 })`  
   min-height: ${props => props.height}
-  padding-bottom: 1.45rem;
+  padding-bottom: 2.45rem;
   flex-direction: row;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -99,7 +99,7 @@ const StyledLink = styled(Link)`
   justify-content: space-between;
   transition: all 200ms ease;
   text-decoration: none;
-  color: #dadada;
+  color: #f9f9f9;
   &:hover {
     background: #ffffff;
     color: #1d669b;
@@ -108,8 +108,6 @@ const StyledLink = styled(Link)`
 
 const Box = styled.div`
   text-align: center;
-  // color: #dadada;
-  // display: flex;
   ul {
     list-style: none;
     margin: 0;
@@ -120,8 +118,8 @@ const Box = styled.div`
 
 const IndexPage = ({ data }) => (
   <div>
-    <LandingWrapper height="60vh">    
-      <LandingContainer height="60vh">        
+    <LandingWrapper>    
+      <LandingContainer>        
         <H1>
           Full-stack Node developer          
         </H1>
@@ -131,10 +129,10 @@ const IndexPage = ({ data }) => (
       </LandingContainer>
     </LandingWrapper>
 
-    <LandingWrapper>   
-      <Landing bg="#f4f4f4" />
+    <LandingWrapper height="34vh">   
+      <Landing bg="#f4f4f4" height="34vh"/>
       {/* <H1>Skills</H1> */}
-      <ThreeContainer>              
+      <ThreeContainer height="34vh">              
         <Box>
           <CodeSvg 
             style={{
@@ -172,7 +170,7 @@ const IndexPage = ({ data }) => (
     </LandingWrapper>
     
     <LandingWrapper>
-    <Landing Landing bg="rgb(35,40,45)">
+    <Landing Landing bg="#1d669b">
       </Landing>
       <LandingContainer>
       <H1 color="#f6f6f6">Blog</H1>
