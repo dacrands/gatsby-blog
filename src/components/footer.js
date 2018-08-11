@@ -47,6 +47,7 @@ const FooterItem = styled.div`
 
   h6 {
     margin-bottom: .45rem;
+    font-size: .7rem;
   }
 `;
 
