@@ -93,9 +93,10 @@ const Li = styled.li`
 
 const StyledLink = styled(Link)`
   display: flex;
+  flex-wrap: wrap;
   padding: .6rem;
   border: 1px solid #dadada;
-  text-align: center;
+  // text-align: center;
   justify-content: space-between;
   transition: all 200ms ease;
   text-decoration: none;
@@ -176,7 +177,7 @@ const IndexPage = ({ data }) => (
       <H1 color="#f6f6f6">Blog</H1>
       <Ul>    
         {
-          data.allMarkdownRemark.edges.map(post => (
+          data.allMarkdownRemark.edges.reverse().map(post => (
             <Li>
                           
               <StyledLink 
