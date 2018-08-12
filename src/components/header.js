@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   background: #1d669b;  
-  background: rgb(35,40,45);  
+  // background: rgb(15,20,25);  
   margin-bottom: 1.45rem;
 `;
 
@@ -21,10 +21,12 @@ const Header = ({ siteTitle }) => (
         <Link
           exact to="/"
           activeStyle= {{
-            color: 'white',            
+            color: '#f9f9f9',            
+            // color: 'rgb(35,40,45)',            
           }}
           style={{
-            color: '#0690f0',
+            // color: 'white',
+            color: 'rgb(35,40,45)',
             textDecoration: 'none',
           }}
         >

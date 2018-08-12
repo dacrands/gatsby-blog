@@ -9,8 +9,9 @@ const FooterMain = styled.div`
   // outline: 3px dashed purple;
   
   background: rgb(35, 40, 45);
-  position: fixed;
-  bottom: 0;  
+  // position: fixed;
+  // bottom: 0;  
+  position: absolute;
   left: 0;
   right: 0;
   margin-top: -2.9rem;
@@ -45,7 +46,7 @@ const FooterItem = styled.div`
     }
   }
 
-  h6 {
+  p {
     margin-bottom: .45rem;
     font-size: .7rem;
   }
@@ -73,9 +74,8 @@ const Footer = () => (
   <FooterMain>
       <FooterItem>
         
-          <FooterLink to="/">
-            { <HomeSvg /> }
-            {/* Home */}
+          <FooterLink exact to="/">
+            { <HomeSvg /> }            
           </FooterLink>          
         
           <a target="_blank" href="https://github.com/dacrands">
@@ -83,7 +83,7 @@ const Footer = () => (
           </a>                      
       </FooterItem>
       <FooterItem>
-        <h6>Built by dacrands using Gatsby JS</h6>      
+        <p>Built by dacrands using Gatsby JS</p>      
       </FooterItem>
   </FooterMain>
 );
