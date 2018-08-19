@@ -18,18 +18,21 @@ I remember being at a symposium, standing there with my terrible SPSS histograms
 ---
 I will not go through an in-depth rundown of my learning path here, but these were the first resources I used to learn programming:
 
-- Automate the Boring Stuff (ATBS)
+- **Reddit** (e.g., r/learnpython, r/python)
 
-  I can't reccommned ATBS enough. It will teach you the fundamentals and have you doing some cool things very quickly. Though I never completed the book, the first few chapters were very informative and well-presented. This is no surprise, as ATBS is perhaps the most highly recommended resource for getting started with Python.
+  This remains my post important tool for learning to program. 
+  I check reddit constantly to stay up to date with the industry.
 
-- $10 udemy course on Python Data Visualization
+
+- **Automate the Boring Stuff (ATBS)**
+
+  I can't reccommned ATBS enough. It will teach you the basics and have you doing some cool things very quickly. Though I never completed the book, the first few chapters were very informative and well-presented. This is no surprise, as ATBS is perhaps the most highly recommended resource for getting started with Python.
+
+- **$10 udemy course on Python Data Visualization**
   
   I won't mention the course here since it has not been updated in quite some time and it wasn't super great (free resources are easily as good), but it did get me started with the hallmark data-science libraries.
   I began this course once I had a pretty solid understanding of the fundamentals and OOP. It taught me the basics of **numpy**, **pandas**, and **seaborn,** but most of my learning these libraries came directly from the documentation and *stackoverflow* questions. Also, there is only so much you can do with seaborn before you need to dive directly into matplotlib.
-
-- **Reddit** (r/learnpython, r/python)
-
-  This is by far the best resource for me to this day. I check reddit constantly to stay up to date on the industry. 
+ 
 
 
 
@@ -49,7 +52,7 @@ Now I'm going to fast-forward a bit, but here are some takeaways from my experie
   
   It's better to get familiar with virtual environments sooner rather than later, especially since some really awesome data libraries, such as word-cloud, rely on earlier versions of libraries such as Numpy. 
 
-  Virtual environments are particularly easy to set up with Conda, though there are some issues when using them on Windows, so be careful. I suggest using the Command Prompt and not PowerShell when using virtual environments on Windows, since it will indicate whether the env is active or not.
+  Virtual environments are particularly easy to set up with Conda, though there are some issues when using them on Windows, so be careful. I suggest using the Command Prompt and not PowerShell when using virtual environments on Windows, since the former will indicate whether the env is active or not.
 
   For example:
 
@@ -67,7 +70,7 @@ Now I'm going to fast-forward a bit, but here are some takeaways from my experie
   C:\Users\dacrands>
   ```
 
-
+<br />
 
 ## My First Data Project
 ---
@@ -101,8 +104,10 @@ def column_cleaner(arr):
 ```
 *Yes, I know this function isn't very good as there is no error handling, etc., but I was young and it works.*
 
+Now let's take a look at the data so we can see this super cool function in action.
+
 ### The Data
-As I mentioned above, Pandas made grabbing the data very easy.
+As I mentioned, Pandas made grabbing the data very easy.
 
 ```python
 import pandas as pd
@@ -112,9 +117,14 @@ dframe = DataFrame(ww1_data[0])
 ```
 
 
-That's it. So now that we have the data, it's just a matter of cleaning things up.
 
-First, let's rename our columns to something a bit more code friendly
+![WW1 wikipedia table](https://i.imgur.com/cGD5VTk.jpg)
+
+That's it! I believe pandas is grabbing the innerHTML of the table, in the process turning things like *a* tags into
+plain strings.
+So now that we have the data, it's just a matter of cleaning things up.
+
+**First,** let's rename our columns to something a bit less verbose.
 
 ```python
 dframe = dframe.rename(columns={
@@ -129,15 +139,28 @@ dframe = dframe.rename(columns={
                               8: 'miliWounded'
                             })
 ```
+<br />
 
-Second, let's use our function to get some integers.
-*Note: we are only doing this for select columns*
+![Clean graph's columns](https://i.imgur.com/OrJ2ocb.png)
+You may have noticed that the dataframe is transposed.
+I did this several times throughout the project because, at least at the time,
+this made indexing and renaming columns much easier.
+
+
+**Second,** let's use that function I mentioned earlier to convert these messy strings into some nice integers.
+
+
 ```python
-  for i in ['dead/MIA', 'allDead', 'civisDead', 'TotDeaths']:
+  for i in ['dead/MIA', 'allDead', 'civisDead', 'civisIndirectDead', 'TotDeaths', 'miliWounded']:
     power_frame[i] = column_cleaner(power_frame[i])
 ```
+*Note: we are only doing this for select columns*
 
-Third, the table contained data for 30 countries, when I only wanted to look at a select few. Here's how I created a new data-frame containing only the countries I was interested in: 
+
+I'll show the *dramatic* results of this function below.
+
+
+**Third,** the table contained data for 30 countries, when I only wanted to look at a select few. Here's how I created a new data-frame containing only the countries I was interested in: 
 
 ```python
 power_frame = dframe[[21,14,8,24,12,19,26,27]]
@@ -156,9 +179,30 @@ power_frame['countries'] = [
 And that's about it in terms of the data.
 
 
+
+
+#### Before...
+
+![WW1 wikipedia table](https://i.imgur.com/cGD5VTk.jpg)
+
+#### After...
+![Imgur](https://i.imgur.com/hQph3cX.jpg)
+
+
+
+
  
+## Going Back
+___
 
 
+I revisited a lot of old code in the writing of this post and it's been, for the most part, a pleasurably nostalgic journey back to the world of Python data-science. Although my intention was to just paste some snippets of code and show the graphs, when writing this I actually booted up a jupyter notebook and began running the scripts I wrote. Thankfully this project still works.
+
+
+
+![new ww1 casualty graph](https://i.imgur.com/kNN4Z4J.jpg)
+
+My primary reason for revisualizing the data was to see if I still could. Luckily there wasn't much of an issue putting the above barplot together, though I did *not* miss the matplotlib documentation. Documentation for web development is presented so beautifully and written with character, web devs are truly spoiled in that sense. It makes sense that *Stackoverflow* answers most of my matplotlib questions, as the library's docs leave a lot to be desired.   
 
 
 

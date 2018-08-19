@@ -177,7 +177,7 @@ const IndexPage = ({ data }) => (
       <H1 color="#f6f6f6">Blog</H1>
       <Ul>    
         {
-          data.allMarkdownRemark.edges.reverse().map(post => (
+          data.allMarkdownRemark.edges.map(post => (
             <Li>
                           
               <StyledLink 
