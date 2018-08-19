@@ -1,6 +1,7 @@
 ---
 path: '/8-5-18'
 title: 'Hello World!'
+tags: ['GatsbyJS', 'Markdown']
 ---
 
 
@@ -14,9 +15,8 @@ are reading what I write through a very fast static-site generator, so perhaps t
 
 ```javascript
 function CodeSnippet(bool) {
-  let inline = bool;
   return function blockCode() {
-    return `Markdown's block code is ${ inline ? 'awesome' : 'really awesome' }`
+    return `Markdown's block code is ${ bool ? 'awesome' : 'really awesome' }`
   }
 }
 ```

@@ -204,6 +204,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             path
+            tags
           }
         }
       }

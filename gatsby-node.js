@@ -23,6 +23,7 @@
           frontmatter {
             path
             title
+            tags
           }
         }
       }

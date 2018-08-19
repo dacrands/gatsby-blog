@@ -1,6 +1,7 @@
 ---
 path: '/8-9-18'
 title: 'Styled Components'
+tags: ['CSS-in-JS', 'styled-components']
 ---
 
 ---

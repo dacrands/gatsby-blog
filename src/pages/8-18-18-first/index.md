@@ -1,6 +1,7 @@
 ---
 path: '/8-18-18'
 title: 'Revisiting Python Data Analysis: Part 2'
+tags: ['Python', 'Matplotlib', 'Data Visualization']
 ---
 
 

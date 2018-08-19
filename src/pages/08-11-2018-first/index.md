@@ -1,6 +1,7 @@
 ---
 path: '/8-11-18'
 title: 'Revisiting Python Data Visualization'
+tags: ['Python', 'Matplotlib', 'Data Visualization', 'Jupyter Notebooks']
 ---
 
 

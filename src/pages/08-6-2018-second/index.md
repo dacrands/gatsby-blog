@@ -1,6 +1,7 @@
 ---
 path: '/8-6-18'
 title: 'Learning to program'
+tags: ['Learning']
 ---
 
 ___
