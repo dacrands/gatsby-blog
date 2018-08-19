@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Git from '../assets/github.svg';
 import Home from '../assets/home.svg';
 
-const FooterMain = styled.div`
+const FooterMain = styled.footer`
   // outline: 3px dashed purple;
   
   background: rgb(35, 40, 45);
@@ -14,7 +14,7 @@ const FooterMain = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  margin-top: -2.9rem;
+  // margin-top: -2.9rem;
   margin-bottom: 0;
   padding-bottom: .75em;
   padding: 0.2em 1em;
@@ -72,8 +72,7 @@ const HomeSvg = styled(Home)`
 
 const Footer = () => (
   <FooterMain>
-      <FooterItem>
-        
+      <FooterItem>        
           <FooterLink exact to="/">
             { <HomeSvg /> }            
           </FooterLink>          
