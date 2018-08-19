@@ -7,7 +7,7 @@ title: 'MIT 6.00.1x Course Review'
 ---
 ![MIT Progress Chart](https://i.imgur.com/InlXNhc.png)
 
-You'll have to take my word for it that is my actualy progress for MIT's *Introduction to Computer Science and Programming Using Python* hosted on edX &rarr; [Linked here](https://courses.edx.org/courses/course-v1:MITx+6.00.1x_7+3T2015/course/)). I heard a lot about this course on Reddit, particularly that it was rather demanding and covered a lot of topics. Additonally, I would say that at least in terms of the Reddit population, this course is ranked second only to Harvard's CS50 in terms of being the best open-source education introduction to programming course. 
+You'll have to take my word for it that is my actualy progress for MIT's *Introduction to Computer Science and Programming Using Python* hosted on edX &rarr; [Linked here](https://courses.edx.org/courses/course-v1:MITx+6.00.1x_7+3T2015/course/)), and not someone else's. I heard a lot about this course on Reddit, particularly that it was rather demanding and covered a lot of topics. Additonally, I would say that at least in terms of the Reddit population, this course is ranked second only to Harvard's CS50 in terms of being the best open-source education introduction to programming course. 
 
 Also, years before I started programming, very crude videos of the lectures for this course were uploaded to Youtube. This was during the nascent days of open-source education, when audio and video quality left a lot to be desired. Regardless, I was only able to watch a few minutes of the first lecture before losing interest (at that time I was not willing to download anything in order to learn programming), namely because I still had no idea what programming was.
 
