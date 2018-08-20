@@ -12,11 +12,10 @@ const Tags = styled.ul`
 const Tag = styled.li`
   height: min-content;
   margin: 0.45rem;
-  padding: 0.1rem;
+  padding: 0.1rem 0.3rem;
   font-size: 0.8rem;
   color: #f1f1f1;
-  background: #1d669b;
-  border-radius: 5px;
+  background: #1d669b;  
   border: 2px solid #1d669b;
   transition: all 200ms ease;
   &:hover {

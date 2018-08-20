@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const Tags = styled.ul`
   // outline: 4px dashed red;
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin-left: 0;
 `;
@@ -12,17 +13,15 @@ const Tags = styled.ul`
 const Tag = styled.li`
   height: min-content;
   margin: 0.45rem;
-  padding: 0.1rem;
+  padding: 0.1rem 0.3rem;
   font-size: 0.8rem;
   color: #f1f1f1;
   background: #1d669b;
-  border-radius: 5px;
-  border: 2px solid #1d669b;
+  // border-radius: 5px;
+  // border: 2px solid #1d669b;
   transition: all 200ms ease;
   &:hover {
     // cursor: pointer;
-    font-size: 1.1rem;
-    padding: 0.3rem;
     background: #ffffff;
     color: #1d669b;
   }
@@ -55,6 +54,7 @@ const StyledLink = styled(Link)`
   div {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 `;
 
