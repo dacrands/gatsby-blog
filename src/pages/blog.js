@@ -16,14 +16,14 @@ const Tag = styled.li`
   padding: 0.1rem 0.3rem;
   font-size: 0.8rem;
   color: #f1f1f1;
-  background: #1d669b;
+  background: #1e85d0;
   // border-radius: 5px;
-  // border: 2px solid #1d669b;
+  // border: 2px solid #1e85d0;
   transition: all 200ms ease;
   &:hover {
     // cursor: pointer;
     background: #ffffff;
-    color: #1d669b;
+    color: #1e85d0;
   }
 `;
 
@@ -45,8 +45,8 @@ const StyledLink = styled(Link)`
   flex-direction: column;
   transition: all 200ms ease;
   text-decoration: none;
-  color: #1d669b;
-  // background: #1d669b;
+  color: #1e85d0;
+  // background: #1e85d0;
   &:hover {
     background: #dadada;
   }
@@ -91,7 +91,7 @@ const SecondPage = ( {data}) => (
         }
       </Ul>
 
-      <Link to="/"> &larr; Back</Link>
+      <Link to="/"> &larr; Home</Link>
   </div>
 )
 

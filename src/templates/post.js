@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Tags = styled.ul`
   // outline: 4px dashed red;
@@ -41,6 +42,7 @@ export default function Template({ data }){
         }
       </Tags>
       <div dangerouslySetInnerHTML={{__html: post.html}} />
+      <Link to="/blog">&larr; Blogs page</Link>
     </div>
   )
 };

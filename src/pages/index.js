@@ -31,7 +31,7 @@ const Landing = styled.div.attrs({
 `;
 
 const H1 = styled.h1.attrs({
-  color: props => props.color || '#1d669b'
+  color: props => props.color || '#1e85d0'
 })`
   color: ${props => props.color}
   // color: white;
@@ -100,10 +100,12 @@ const StyledLink = styled(Link)`
   justify-content: space-between;
   transition: all 200ms ease;
   text-decoration: none;
-  color: #f9f9f9;
+  color: #1e85d0;
+  // color: rgb(35,40,45);
   &:hover {
     background: #ffffff;
-    color: #1d669b;
+    color: rgb(35,40,45);
+    // color: #1e85d0;
   }
 `;
 
@@ -139,7 +141,7 @@ const IndexPage = ({ data }) => (
             style={{
               width: "100px",
               height: "70px",
-              fill: "#1d669b"
+              fill: "#1e85d0"
             }}
           />  
           <h3>Lanuages</h3>
@@ -150,7 +152,7 @@ const IndexPage = ({ data }) => (
             style={{
               width: "100px",
               height: "70px",
-              fill: "#1d669b"
+              fill: "#1e85d0"
             }}
           />  
           <h3>Frameworks</h3>
@@ -161,7 +163,7 @@ const IndexPage = ({ data }) => (
             style={{
               width: "100px",
               height: "70px",
-              fill: "#1d669b"
+              fill: "#1e85d0"
             }}
           />    
           <h3>Tools</h3>           
@@ -171,10 +173,10 @@ const IndexPage = ({ data }) => (
     </LandingWrapper>
     
     <LandingWrapper>
-    <Landing Landing bg="#1d669b">
+    <Landing>
       </Landing>
       <LandingContainer>
-      <H1 color="#f6f6f6">Blog</H1>
+      <H1>Blog</H1>
       <Ul>    
         {
           data.allMarkdownRemark.edges.map(post => (
@@ -190,6 +192,8 @@ const IndexPage = ({ data }) => (
           ))
         }
       </Ul>
+
+      <Link to="/blog">Blog page &rarr;</Link>
       </LandingContainer>
     </LandingWrapper>  
   

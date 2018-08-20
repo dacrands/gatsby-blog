@@ -3,8 +3,8 @@ import Link from 'gatsby-link'
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
-  background: #1d669b;  
-  // background: rgb(15,20,25);  
+  // background: #1e85d0;  
+  background: rgb(35,40,45);  
   margin-bottom: 1.45rem;
 `;
 
@@ -36,7 +36,7 @@ const Links = styled.ul`
     display: block;
 
     &:hover {
-      color: rgb(35,40,45);
+      color: #1e85d0;
     }
   }
 
@@ -55,6 +55,10 @@ const Header = ({ siteTitle }) => (
             // color: 'rgb(35,40,45)',
             textDecoration: 'none',
           }}
+          activeStyle= {{
+            color: '#f9f9f9',            
+            color: '#1e85d0',                    
+          }}
         >
           {siteTitle}
         </Link>
@@ -65,7 +69,8 @@ const Header = ({ siteTitle }) => (
             exact to="/blog"
             activeStyle= {{
               color: '#f9f9f9',            
-              color: 'rgb(35,40,45)',                    
+              color: 'rgb(35,40,45)',
+              color: '#1e85d0',                     
             }}
           >
             Blog
