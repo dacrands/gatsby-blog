@@ -20,6 +20,7 @@ const FooterMain = styled.footer`
   padding: 0.2em 1em;
   color: #f1f1f1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   
@@ -34,6 +35,7 @@ const FooterLink = styled(Link)`
 const FooterItem = styled.div`
   // outline: 3px dashed orange;
   display: flex;
+  flex-wrap: wrap;
   // flex-direction: column;    
   align-items: center;  
   a {    

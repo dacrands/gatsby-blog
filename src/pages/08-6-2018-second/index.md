@@ -50,6 +50,7 @@ Two things to keep in mind, though:
     
      I interpret these numbers as demonstrating that, though a lot of people may show a passing interest in programming, the actual number of people who contribute content and are active in these communities is relatively small. This is a good thing, though, because you will be exposed to immense knowledge and creativity. However, the standard will be high and, especially if you're brand new to coding, nearly everyone will be much, much better than you at this.
 
+
      Also, take a look at the github repos of the people whose projects get upvoted on reddit. Sometimes I'll get overwhelmed at how amazing someone's project is, only to view this person's github and see eight years of contributions. I think it's safe to assume someone whose been doing this for eight years will be better than someone whose been doing this for eleven months.
     
 2. **Some people are prodigys, but most aren't**

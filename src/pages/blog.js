@@ -13,6 +13,7 @@ const Tags = styled.ul`
 const Tag = styled.li`
   height: min-content;
   margin: 0.45rem;
+  margin-left: 0;
   padding: 0.1rem 0.3rem;
   font-size: 0.8rem;
   color: #f1f1f1;
@@ -34,13 +35,24 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  border: 1px solid #dadada;
+  // border: 1px solid #dadada;
+  // padding: 0.25rem 1rem;
+  margin-bottom: 1.45rem;
+`;
+
+const LiText = styled.div`
+  p {
+    margin: 0;
+    &:last-of-type {
+      color: rgb(135,140,145);
+    }
+  }
 `;
 
 const StyledLink = styled(Link)`
-  display: flex;
-  flex-wrap: wrap;
-  padding: .6rem;  
+  // display: flex;
+  // flex-wrap: wrap;
+  // padding: .6rem;  
   // text-align: center;  
   flex-direction: column;
   transition: all 200ms ease;
@@ -48,13 +60,11 @@ const StyledLink = styled(Link)`
   color: #1e85d0;
   // background: #1e85d0;
   &:hover {
-    background: #dadada;
-  }
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    color: rgb(35,40,45);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    li {
+      background: rgb(35,40,45);      
+    }
   }
 `;
 
@@ -72,10 +82,10 @@ const SecondPage = ( {data}) => (
               <StyledLink 
                 to={post.node.frontmatter.path}
               >    
-              <div>
-                <h3>{post.node.frontmatter.title}</h3>
-                <h3>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</h3>
-              </div>
+              <LiText>
+                <p>{post.node.frontmatter.title}</p>
+                <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
+              </LiText>
                 
               
                 <Tags>

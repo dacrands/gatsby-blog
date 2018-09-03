@@ -23,7 +23,7 @@ const Links = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  
+  flex-wrap: wrap;
   li {
   // outline: 3px dashed orange;
    margin: 0 1rem;
@@ -76,6 +76,9 @@ const Header = ({ siteTitle }) => (
             Blog
           </Link>
         </li>
+        <li>
+          <a href="https://mysterious-brushlands-44734.herokuapp.com/">Portfolio</a>
+        </li>        
         <li>
           <a href="https://github.com/dacrands">Github</a>
         </li>        

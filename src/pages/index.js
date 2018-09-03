@@ -82,26 +82,32 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   // outline: 3px dashed red;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   // justify-content: space-around;  
-  margin: .75rem .525rem;
+  margin: 1rem 0;  
+  // display: inline-block 
+   
   h3 {
     margin-right: .75rem;
   }
 `;
 
 const StyledLink = styled(Link)`
-  display: flex;
-  flex-wrap: wrap;
-  padding: .6rem;
-  border: 1px solid #dadada;
-  // text-align: center;
-  justify-content: space-between;
+  display: block;
+  // border: 1px solid #dadada;    
   transition: all 200ms ease;
   text-decoration: none;
   color: #1e85d0;
+  padding: 0;
   // color: rgb(35,40,45);
+
+  p {
+    margin: 0;
+    &:last-of-type {
+      color: rgb(135,140,145);
+    }    
+  }
   &:hover {
     background: #ffffff;
     color: rgb(35,40,45);
@@ -176,24 +182,22 @@ const IndexPage = ({ data }) => (
     <Landing>
       </Landing>
       <LandingContainer>
-      <H1>Blog</H1>
-      <Ul>    
-        {
-          data.allMarkdownRemark.edges.map(post => (
-            <Li>
-                          
-              <StyledLink 
-                to={post.node.frontmatter.path}
-              >    
-                <h3>{post.node.frontmatter.title}</h3>                            
-                <h3>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</h3>
-              </StyledLink>                
-            </Li>
-          ))
-        }
-      </Ul>
-
-      <Link to="/blog">Blog page &rarr;</Link>
+        <H1>Blog</H1>
+        <Ul>    
+          {
+            data.allMarkdownRemark.edges.map(post => (
+              <Li>                         
+                <StyledLink 
+                  to={post.node.frontmatter.path}
+                >    
+                  <p>{post.node.frontmatter.title}</p>                            
+                  <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
+                </StyledLink>                
+              </Li>
+            ))
+          }
+        </Ul>
+        <Link to="/blog">Blog page &rarr;</Link>
       </LandingContainer>
     </LandingWrapper>  
   
