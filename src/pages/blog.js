@@ -111,6 +111,7 @@ export const pageQuery = graphql`
       edges {
         node {
           frontmatter {
+            _id
             title
             path
             tags

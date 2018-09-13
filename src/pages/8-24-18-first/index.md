@@ -1,4 +1,5 @@
 ---
+_id : 6
 path: '/8-24-18'
 title: 'NeXT Logo in HTML and CSS'
 tags: ['Steve Jobs', 'Paul Rand', 'NeXT', 'Logo']

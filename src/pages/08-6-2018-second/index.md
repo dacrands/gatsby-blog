@@ -1,31 +1,41 @@
 ---
+_id : 1
 path: '/8-6-18'
 title: 'Learning to program'
 tags: ['Learning']
 ---
 
 > "Comparison is the thief of joy"
->
+<br>
 > &mdash; <cite>Teddy Roosevelt</cite>
 
-When you go on sites like [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) or any other place where developers &mdash; experienced and novice alike &mdash; congregate, there is a ripe oppurtunity to have your self-esteem smashed. Not because people are cruel or overly-critical (although sometimes there is some of that, these communities are pretty good at policing bullies), but because it's intimidating to see just how talented people are or how much there is left to learn. 
+When you go on sites like [r/learnprogramming](https://www.reddit.com/r/learnprogramming/) or any other place where developers, experienced and novice alike, congregate, there is a ripe oppurtunity to have your self-esteem smashed. Not because people are cruel or overly-critical (although sometimes there is some of that, these communities are pretty good at policing bullies), but because it's intimidating to see just how talented people are or how much there is left to learn. 
 
-We work on our projects, we err, and err, and err again, then we get our big win! Our stylesheet is finally linked properly or our fetch request is returning 200. We are overcome with feelings of accomplishment and joy
+We work on our projects, we err, and err, and err again, then we get our big win! Our stylesheet is finally linked properly or our fetch request is returning 200. We are overcome with feelings of accomplishment and joy!
 
 ...then we look online. 
 
-Soon we find out that apparently EJS is out and React is in, or that you need to minify and lazy-load your assets, or that those awesome fonts and icons are dramatically decreasing your site's performance, or that no one in these communities will likely give your site the time of day if it's not responsive, or that..., or that... We read about all these things we have no idea about and learn that because we are not implementing those things we are terrible people who are clogging up the internet with garbage.
+Soon we find out that there are things like JavaScript frameworks, or that those awesome fonts and icons are dramatically decreasing your site's performance, or that no one in these communities will likely give your site the time of day if it's not responsive, or that..., or that... We read about all these things we have no idea about and learn that because we are not implementing those things we are terrible people who are clogging up the internet with garbage.
 
 ## You don't know until you know
----
 I was so naive when I first started learning to program. I remember creating an HTML document in Notepad where I changed the color of an h1 containing my name and feeling as though I was ready to apply to programming jobs &mdash; *I wrote something that I can open in Chrome, I am invincible!* 
 
-Of course this is humorous when one considers what it takes to land a developer job, but it reflects that people who don't study programming are completely clueless about this stuff. Generating something that is rendered in a browser elicits a powerful feeling &mdash; somehow, through your keystrokes, you made something that is now a part of the most important information tool ever created. Ignorance is bliss at this stage in your programming jounrney. Presumably at this stage you're not part of communities where best practices and newest tech are discussed, e.g., *reddit*.
+Of course this is humorous when one considers what it takes to land a developer job, but it reflects that people who don't study programming are completely clueless about this stuff. Generating something that is rendered in a browser elicits a powerful feeling &mdash; somehow, through your keystrokes, you made something that is now a part of the most important information tool ever created. To your friends and family who know nothing about coding you are some sort of technical guru who can "build an app," when in reality you just got off the blocks.
 
-It's not until people look to broaden their knowledge that the iceberg is uncovered, time spent googling things like closures and inheritance increases, and time spent socializing decreases. 
+
+It's not until people look to broaden their knowledge that the iceberg is uncovered and a strong wave of fear washes over the body. But that's the fun of it! So where do you find this iceberg?
 
 ![iceberg](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Iceberg_in_the_Arctic_with_its_underside_exposed.jpg/1200px-Iceberg_in_the_Arctic_with_its_underside_exposed.jpg) 
 
+
+## Be where the knowledge is
+**1. Reddit**
+
+   This is my favorite resource, specifically *r/webdev*, *r/web_design*, *r/learnprogramming*, *r/cscareerquestions8*
+
+**2. Stackoverflow**
+
+I typically acess Stackoverflow through google.
 
 ## It will get better and faster (not just your websites)
 ---
@@ -49,7 +59,6 @@ Two things to keep in mind, though:
     ![r/webdev visitors](https://i.imgur.com/SGhgc6zm.jpg) ![r/learnprogramming visitors](https://i.imgur.com/vGVqllAm.jpg)
     
      I interpret these numbers as demonstrating that, though a lot of people may show a passing interest in programming, the actual number of people who contribute content and are active in these communities is relatively small. This is a good thing, though, because you will be exposed to immense knowledge and creativity. However, the standard will be high and, especially if you're brand new to coding, nearly everyone will be much, much better than you at this.
-
 
      Also, take a look at the github repos of the people whose projects get upvoted on reddit. Sometimes I'll get overwhelmed at how amazing someone's project is, only to view this person's github and see eight years of contributions. I think it's safe to assume someone whose been doing this for eight years will be better than someone whose been doing this for eleven months.
     

@@ -21,6 +21,7 @@
           html
           id
           frontmatter {
+            _id
             path
             title
             tags

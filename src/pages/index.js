@@ -99,8 +99,10 @@ const StyledLink = styled(Link)`
   transition: all 200ms ease;
   text-decoration: none;
   color: #1e85d0;
-  padding: 0;
+  padding: 1em;
   // color: rgb(35,40,45);
+  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  position: relative;
 
   p {
     margin: 0;
@@ -108,10 +110,20 @@ const StyledLink = styled(Link)`
       color: rgb(135,140,145);
     }    
   }
+
+  span {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+  }
+
   &:hover {
     background: #ffffff;
     color: rgb(35,40,45);
     // color: #1e85d0;
+    box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
   }
 `;
 
@@ -124,6 +136,12 @@ const Box = styled.div`
   margin: 0 .475rem;
 `;
 
+
+function sortBlogs(blogs) {
+  return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
+    return post2 - post1;
+  });  
+}
 
 const IndexPage = ({ data }) => (
   <div>
@@ -184,14 +202,15 @@ const IndexPage = ({ data }) => (
       <LandingContainer>
         <H1>Blog</H1>
         <Ul>    
-          {
-            data.allMarkdownRemark.edges.map(post => (
+          {            
+            sortBlogs(data).map(post => (
               <Li>                         
                 <StyledLink 
                   to={post.node.frontmatter.path}
                 >    
-                  <p>{post.node.frontmatter.title}</p>                            
+                  <p>{post.node.frontmatter.title}</p>                         
                   <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
+                  <span>{post.node.frontmatter._id}.</span>
                 </StyledLink>                
               </Li>
             ))
@@ -210,6 +229,7 @@ export const pageQuery = graphql`
       edges {
         node {
           frontmatter {
+            _id
             title
             path
             tags
