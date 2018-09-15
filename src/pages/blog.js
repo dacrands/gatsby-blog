@@ -68,6 +68,11 @@ const StyledLink = styled(Link)`
   }
 `;
 
+function sortBlogs(blogs) {
+  return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
+    return post1.node.frontmatter._id - post2.node.frontmatter._id;
+  })
+}
 
 const SecondPage = ( {data}) => (
   <div>
@@ -75,19 +80,16 @@ const SecondPage = ( {data}) => (
     <p>Just amusing musings</p>
 
     <Ul>    
-        {
-          data.allMarkdownRemark.edges.map(post => (
-            <Li>
-                          
+        {          
+          sortBlogs(data).map(post => (
+            <Li>                          
               <StyledLink 
                 to={post.node.frontmatter.path}
               >    
-              <LiText>
-                <p>{post.node.frontmatter.title}</p>
-                <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
-              </LiText>
-                
-              
+                <LiText>
+                  <p>{post.node.frontmatter.title}</p>
+                  <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
+                </LiText>                            
                 <Tags>
                   {
                   post.node.frontmatter.tags.map(tag =>(

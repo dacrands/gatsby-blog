@@ -29,6 +29,7 @@ This blog also implements **YAML front matter,** which allows you to add useful 
 
 ```
 ---
+_id: 0
 path: '/8-5-18'
 title: 'Hello World!'
 tags: ['GatsbyJS', 'Markdown']

@@ -139,8 +139,8 @@ const Box = styled.div`
 
 function sortBlogs(blogs) {
   return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
-    return post2 - post1;
-  });  
+    return post1.node.frontmatter._id - post2.node.frontmatter._id;
+  })
 }
 
 const IndexPage = ({ data }) => (
