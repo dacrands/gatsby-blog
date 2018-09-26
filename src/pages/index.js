@@ -168,7 +168,7 @@ const IndexPage = ({ data }) => (
               fill: "#1e85d0"
             }}
           />  
-          <h3>Lanuages</h3>
+          <h3>Languages</h3>
           <p>Javascript, Python, HTML, CSS</p>
         </Box>
         <Box>
@@ -210,7 +210,7 @@ const IndexPage = ({ data }) => (
                 >    
                   <p>{post.node.frontmatter.title}</p>                         
                   <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
-                  <span>{post.node.frontmatter._id}.</span>
+                  <span>{post.node.frontmatter._id}</span>
                 </StyledLink>                
               </Li>
             ))

@@ -36,8 +36,15 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   // border: 1px solid #dadada;
-  // padding: 0.25rem 1rem;
+  padding: 1em;
   margin-bottom: 1.45rem;
+  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  &:hover {
+    background: #ffffff;
+    color: rgb(35,40,45);
+    // color: #1e85d0;
+    box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
+  }
 `;
 
 const LiText = styled.div`
