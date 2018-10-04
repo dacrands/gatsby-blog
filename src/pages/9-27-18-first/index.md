@@ -11,7 +11,7 @@ Well, if someone opens the "Network" tab in development tools, they can easily v
 
 So you've learned the basics of front-end development and you want to build something using an API &mdash; awesome. APIs are great because they provide access to troves of data that is being currated by someone else, so front-end developers can jump right in and start building. 
 
-However, practically all APIs require users to acquire a *secret-key,* which needs part of the URL making the request to the API. Without this key, users trying to access the API will receive a *403 forbidden error.*
+However, practically all APIs require users to acquire a *secret-key,* which needs to be part of the URL making the request to the API. Without this key, users trying to access the API will receive a *403 forbidden error.*
 
 This is where the front-end developer runs into some problems. Remember, we are talking about a *secret-key,* not a *please-share-with-everybody-key,* ergo this key shouldn't be shared with anyone. Sorry for the pedanticism, but I see a number of projects that have hard-coded API-keys and I'm not sure why.
 
@@ -64,7 +64,8 @@ export function fetchData() {
 
 For brevity I removed error-handling. As we move through our phases, we'll be improving this API-call.
 
-## Phase II: Environment Variables
+## Phase II: Environment Variable
+---
 One step close to securing an API-key is using environment variables. These are variables that the developer creates from the terminal and that your program will use for configuring certain things, such as the `PORT` for the app to listen on. The naming convention for these variable is upper-case, snake-case, e.g., ENV_VAR
 
 Depending on your OS, configuring environment variables will look different:
@@ -100,7 +101,7 @@ export function fetchData() {
 ```
 <br>
 
-Note we provide a fallback when assigning the `const API_KEY`. If the environment variable being called is not been configured, the app has a value to fallback on. Try playing around with environment variables to find out why this is a good idea. 
+Note we provide a fallback when assigning the `const API_KEY`. If the environment variable being called is not configured, the app has a value to fallback on. Try playing around with environment variables to find out why this is a good idea. 
 
 So we're all set. Our API-key can be removed the code and now no one will ever be able to see our API-key.
 
