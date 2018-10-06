@@ -16,73 +16,11 @@ import HtmlLogo from '../assets/logos/html-5-logo.svg';
 import FlaskLogo from '../assets/logos/flask-logo.svg';
 import Framework from '../assets/framework.svg';
 
-const LandingWrapper = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '55vh'
-})`
-  position: relative;
-  height: 100%;
-  min-height: ${props => props.height}   
-`;
-
-const Landing = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '50vh'
-})`
-  min-height: ${props => props.height}
-  position: absolute;    
-  z-index: -1;
-  // margin-top: -1.45rem;  
-  width: 500%;    
-  margin-left: -200%;
-  height: 100%;  
-  background: ${props => props.background};  
-`;
-
-const H1 = styled.h1.attrs({
-  color: props => props.color || '#1e85d0'
-})`
-  color: ${props => props.color}
-  // color: white;
-`;
-
-const LandingContainer = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '50vh'
-})`
-  margin: 0 auto;
-  max-width: 960px;
-  margin-top: -1.45rem;
-  margin-bottom: 1.45rem;
-  height: 100%;
-  min-height: ${props => props.height} 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const ThreeContainer = LandingContainer.extend.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '55vh'
-})`  
-  min-height: ${props => props.height}
-  padding-bottom: 2.45rem;
-  flex-direction: row;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  h3 {
-    // color: #dadada;
-    margin-bottom: 6px;
-  }
-`;
-
 const H3 = styled.h3.attrs({
   weight: props => props.weight || ''
 })`
   font-weight: ${props => props.weight};
 `;
-
 
 const Ul = styled.ul`
   list-style: none;
@@ -136,13 +74,49 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Box = styled.div`
-  text-align: center;
-  ul {
-    list-style: none;
-    margin: 0;
-  }
-  margin: 0 .475rem;
+const LandingWrapper = styled.div.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '34vh'
+})`
+  position: relative;
+  height: 100%;
+  min-height: ${props => props.height}   
+`;
+
+const Landing = styled.div.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '34vh'
+})`
+  min-height: ${props => props.height}
+  position: absolute;    
+  z-index: -1;
+  // margin-top: -1.45rem;  
+  width: 500%;    
+  margin-left: -200%;
+  height: 100%;  
+  background: ${props => props.background};  
+`;
+
+const H1 = styled.h1.attrs({
+  color: props => props.color || '#1e85d0'
+})`
+  color: ${props => props.color}
+  // color: white;
+`;
+
+const LandingContainer = styled.div.attrs({
+  background: props => props.bg || '#ffffff',
+  height: props => props.height || '34vh'
+})`
+  margin: 0 auto;
+  max-width: 960px;
+  // margin-top: -1.45rem;
+  // margin-bottom: 1.45rem;
+  height: 100%;
+  min-height: ${props => props.height} 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Marquee = styled.section`
@@ -159,7 +133,7 @@ const Marquee = styled.section`
 
 const slider = keyframes`
   0% { left: 0; }
-  100% { left: -100%; }
+  100% { left: -920px; }
 `;
 
 const MarqueeInner = styled.div`
@@ -167,7 +141,6 @@ const MarqueeInner = styled.div`
   position: absolute;
   display: block;
   animation: ${slider} 20s linear infinite;
-  // margin: 4em 0;
 `;
 
 const MarqueeSpan  = styled.span`
@@ -202,7 +175,7 @@ const IndexPage = ({ data }) => (
     </LandingWrapper>
 
     <LandingWrapper height="34vh">   
-      <Landing bg="#f4f4f4" height="34vh"/>      
+      {/* <Landing bg="#f4f4f4" height="34vh"/>       */}
       <Marquee>
         <MarqueeInner>
           <MarqueeSpan>
@@ -230,15 +203,13 @@ const IndexPage = ({ data }) => (
             <JsLogo style={svgStyle} />
             <HtmlLogo style={svgStyle} />
             <FlaskLogo style={svgStyle} />
-          </MarqueeSpan>
-          
+          </MarqueeSpan>          
         </MarqueeInner>
       </Marquee>
-    </LandingWrapper>
-    
+    </LandingWrapper>    
     <LandingWrapper>
-    <Landing>
-      </Landing>
+    {/* <Landing>
+      </Landing> */}
       <LandingContainer>
         <H1>Blog</H1>
         <Ul>    
