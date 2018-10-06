@@ -41,3 +41,39 @@ tags: ['CORS', 'jwt', 'flask', 'redux']
 
 
 ## Getting Started
+To work with Gatsby you need to have node installed. 
+
+### Install Gatsby
+```bash
+$ npm install --global gatsby-cli
+```
+
+### Install and Run
+Once you install your packages, you can run development by using `gatsby-develop`.
+
+```bash
+~/gatsby-blog $ npm i
+~/gatsby-blog $ gatsby develop
+```
+
+### Deployment
+
+Here is a look at the `"scripts"` in our `package.json`. To deploy to gitpages, make sure your remote repository has GitHub Pages enabled.
+
+```js
+"scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "deploy": "gatsby build && gh-pages -b master -d public",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+```
+
+### Version Control
+The src of your site deployed to your Github Pages will be a production build, thus you will need a separate remote repo for tracking.
+
+```bash
+~/gatsby-blog $ git remote add hub git@github.com:dacrands/gatsby-blog.git
+~/gatsby-blog $ git push hub master
+```
