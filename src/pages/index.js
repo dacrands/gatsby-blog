@@ -1,10 +1,19 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-import CodeSvg from '../assets/code.svg';
-import Tool from '../assets/tool.svg';
+import CssLogo from '../assets/logos/css-3-logo.svg';
+import ReactLogo from '../assets/logos/react-logo.svg';
+import ReduxLogo from '../assets/logos/redux-logo.svg';
+import SassLogo from '../assets/logos/sass-logo.svg';
+import PostmanLogo from '../assets/logos/postman-logo.svg';
+import WebpackLogo from '../assets/logos/webpack-logo.svg';
+import NodeLogo from '../assets/logos/nodejs-logo.svg';
+import HerokuLogo from '../assets/logos/heroku-logo.svg';
+import JsLogo from '../assets/logos/js-logo.svg';
+import HtmlLogo from '../assets/logos/html-5-logo.svg';
+import FlaskLogo from '../assets/logos/flask-logo.svg';
 import Framework from '../assets/framework.svg';
 
 const LandingWrapper = styled.div.attrs({
@@ -18,12 +27,12 @@ const LandingWrapper = styled.div.attrs({
 
 const Landing = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '55vh'
+  height: props => props.height || '50vh'
 })`
   min-height: ${props => props.height}
   position: absolute;    
   z-index: -1;
-  margin-top: -1.45rem;  
+  // margin-top: -1.45rem;  
   width: 500%;    
   margin-left: -200%;
   height: 100%;  
@@ -39,7 +48,7 @@ const H1 = styled.h1.attrs({
 
 const LandingContainer = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '55vh'
+  height: props => props.height || '50vh'
 })`
   margin: 0 auto;
   max-width: 960px;
@@ -136,6 +145,42 @@ const Box = styled.div`
   margin: 0 .475rem;
 `;
 
+const Marquee = styled.section`
+  // max-width: 1400px;
+  margin: 0 auto;
+  // outline: 2px solid orange;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+`;
+
+const slider = keyframes`
+  0% { left: 0; }
+  100% { left: -100%; }
+`;
+
+const MarqueeInner = styled.div`
+  width: 1840px;
+  position: absolute;
+  display: block;
+  animation: ${slider} 20s linear infinite;
+  // margin: 4em 0;
+`;
+
+const MarqueeSpan  = styled.span`
+  float: left;
+  width: 50%;
+`;
+
+const svgStyle = {
+  width: "83px",
+  height: "83px",
+  display: "inline-block",
+}
+
 
 function sortBlogs(blogs) {
   return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
@@ -148,7 +193,7 @@ const IndexPage = ({ data }) => (
     <LandingWrapper>    
       <LandingContainer>        
         <H1>
-          Full-stack Node developer          
+          Full-stack Web Developer          
         </H1>
         <H3 weight="400">
           I build Node apps that are fast and responsive.
@@ -157,43 +202,38 @@ const IndexPage = ({ data }) => (
     </LandingWrapper>
 
     <LandingWrapper height="34vh">   
-      <Landing bg="#f4f4f4" height="34vh"/>
-      {/* <H1>Skills</H1> */}
-      <ThreeContainer height="34vh">              
-        <Box>
-          <CodeSvg 
-            style={{
-              width: "100px",
-              height: "70px",
-              fill: "#1e85d0"
-            }}
-          />  
-          <h3>Languages</h3>
-          <p>Javascript, Python, HTML, CSS</p>
-        </Box>
-        <Box>
-          <Framework 
-            style={{
-              width: "100px",
-              height: "70px",
-              fill: "#1e85d0"
-            }}
-          />  
-          <h3>Frameworks</h3>
-          <p>React, Redux, Sass, MongoDB, Express</p>
-        </Box>
-        <Box>
-          <Tool
-            style={{
-              width: "100px",
-              height: "70px",
-              fill: "#1e85d0"
-            }}
-          />    
-          <h3>Tools</h3>           
-          <p>Webpack, Git, VSCode</p>
-        </Box>
-      </ThreeContainer>    
+      <Landing bg="#f4f4f4" height="34vh"/>      
+      <Marquee>
+        <MarqueeInner>
+          <MarqueeSpan>
+            <ReactLogo style={svgStyle} />
+            <ReduxLogo style={svgStyle} />
+            <CssLogo style={svgStyle} />
+            <SassLogo style={svgStyle} />
+            <PostmanLogo style={svgStyle} />
+            <HerokuLogo style={svgStyle} />
+            <NodeLogo style={svgStyle} />
+            <WebpackLogo style={svgStyle} />
+            <JsLogo style={svgStyle} />
+            <HtmlLogo style={svgStyle} />
+            <FlaskLogo style={svgStyle} />
+          </MarqueeSpan>
+          <MarqueeSpan>
+            <ReactLogo style={svgStyle} />
+            <ReduxLogo style={svgStyle} />
+            <CssLogo style={svgStyle} />
+            <SassLogo style={svgStyle} />
+            <PostmanLogo style={svgStyle} />
+            <HerokuLogo style={svgStyle} />
+            <NodeLogo style={svgStyle} />
+            <WebpackLogo style={svgStyle} />
+            <JsLogo style={svgStyle} />
+            <HtmlLogo style={svgStyle} />
+            <FlaskLogo style={svgStyle} />
+          </MarqueeSpan>
+          
+        </MarqueeInner>
+      </Marquee>
     </LandingWrapper>
     
     <LandingWrapper>
