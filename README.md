@@ -58,7 +58,7 @@ Once you install your packages, you can run development by using `gatsby-develop
 
 ### Deployment
 
-Here is a look at the `"scripts"` in our `package.json`. To deploy to gitpages, make sure your remote repository has GitHub Pages enabled.
+Here is a look at the `"scripts"` in our `package.json`. To deploy to gitpages, make sure your remote repository has GitHub Pages enabled, then run `npm run deploy`
 
 ```js
 "scripts": {
@@ -71,9 +71,25 @@ Here is a look at the `"scripts"` in our `package.json`. To deploy to gitpages, 
 ```
 
 ### Version Control
-The src of your site deployed to your Github Pages will be a production build, thus you will need a separate remote repo for tracking.
+The src of your site deployed to your Github Pages will be a production build, thus you will need a separate remote repo for version-control.
 
 ```bash
 ~/gatsby-blog $ git remote add hub git@github.com:dacrands/gatsby-blog.git
 ~/gatsby-blog $ git push hub master
 ```
+
+
+### Adding Pages
+To add a page, make a new directory in the `/pages` directory and create an `index.md` file within that directory.
+
+Each Markdown file should have the following placed at the top:
+
+```m
+---
+_id : 7
+path: '/9-27-18'
+title: 'Hide your keys, folks (Part I)'
+tags: ['CORS', 'jwt', 'flask', 'redux']
+---
+```
+

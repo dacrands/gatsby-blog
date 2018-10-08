@@ -9,6 +9,9 @@ tags: ['CORS', 'jwt', 'flask', 'redux']
 
 Well, if someone opens the "Network" tab in development tools, they can easily view the app's requests to the NYT API, and consequently the URL containing my API-key.  -->
 
+
+![WW2 soldier looking at propaganda poster about talking](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/If_You_Talk_Too_Much_This_Man_May_Die_mirror.jpg/800px-If_You_Talk_Too_Much_This_Man_May_Die_mirror.jpg)
+
 So you've learned the basics of front-end development and you want to build something using an API &mdash; awesome. APIs are great because they provide access to troves of data that is being currated by someone else, so front-end developers can jump right in and start building. 
 
 However, practically all APIs require users to acquire a *secret-key,* which needs to be part of the URL making the request to the API. Without this key, users trying to access the API will receive a *403 forbidden error.*
@@ -20,6 +23,8 @@ Part I of this two part series will go through the three phases of working with 
 
 ## Phase I: Keys in the code
 ---
+![key for a lock](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Standard-lock-key.jpg/220px-Standard-lock-key.jpg)
+
 As the title indicates, this is where the API-key is hard-coded into the app. For beginners, this may be an unavoidable situation. For example, if you are hosting a simply weather-app project on gitpages that you aren't planning on sharing with many people, then having an API-key in your code is understandable. One thing I recommend, however, is assigning the key to its own variable so your code is more maintainable:
 
 

@@ -68,7 +68,7 @@ const StyledLink = styled(Link)`
 
   &:hover {
     background: #ffffff;
-    color: rgb(35,40,45);
+    // color: rgb(35,40,45);
     // color: #1e85d0;
     box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
   }
@@ -156,7 +156,7 @@ const svgStyle = {
 
 
 function sortBlogs(blogs) {
-  return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
+  return blogs.allMarkdownRemark.edges.sort((post1, post2) => {
     return post1.node.frontmatter._id - post2.node.frontmatter._id;
   })
 }
@@ -165,11 +165,11 @@ const IndexPage = ({ data }) => (
   <div>
     <LandingWrapper>    
       <LandingContainer>        
-        <H1>
+        <H1 style={{marginTop: "1.45rem"}}>
           Full-stack Web Developer          
         </H1>
         <H3 weight="400">
-          I build Node apps that are fast and responsive.
+          I love building <span style={{color: "#1e85d0"}}>awesome</span> websites.
         </H3>
       </LandingContainer>
     </LandingWrapper>
@@ -214,20 +214,20 @@ const IndexPage = ({ data }) => (
         <H1>Blog</H1>
         <Ul>    
           {            
-            sortBlogs(data).map(post => (
+            sortBlogs(data).slice(5).reverse().map(post => (
               <Li>                         
                 <StyledLink 
                   to={post.node.frontmatter.path}
                 >    
                   <p>{post.node.frontmatter.title}</p>                         
                   <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
-                  <span>{post.node.frontmatter._id}</span>
+                  
                 </StyledLink>                
               </Li>
             ))
           }
         </Ul>
-        <Link to="/blog">Blog page &rarr;</Link>
+        <Link to="/blog">Read more blogs &rarr;</Link>
       </LandingContainer>
     </LandingWrapper>  
   

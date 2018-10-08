@@ -24,7 +24,7 @@ const Tag = styled.li`
   &:hover {
     // cursor: pointer;
     background: #ffffff;
-    color: #1e85d0;
+    // color: #1e85d0;
   }
 `;
 
@@ -36,20 +36,20 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   // border: 1px solid #dadada;
-  padding: 1em;
   margin-bottom: 1.45rem;
   box-shadow: 0 0 2px rgba(0,0,0,0.3);
   &:hover {
     background: #ffffff;
-    color: rgb(35,40,45);
+    // color: rgb(35,40,45);
     // color: #1e85d0;
+    
     box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
   }
 `;
 
 const LiText = styled.div`
   p {
-    margin: 0;
+    margin: 0;    
     &:last-of-type {
       color: rgb(135,140,145);
     }
@@ -57,22 +57,13 @@ const LiText = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  // display: flex;
-  // flex-wrap: wrap;
-  // padding: .6rem;  
-  // text-align: center;  
   flex-direction: column;
   transition: all 200ms ease;
   text-decoration: none;
   color: #1e85d0;
-  // background: #1e85d0;
-  &:hover {
-    color: rgb(35,40,45);
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    li {
-      background: rgb(35,40,45);      
-    }
-  }
+  display: block;
+  padding: 1em;
+  padding-left: 1em;
 `;
 
 function sortBlogs(blogs) {
