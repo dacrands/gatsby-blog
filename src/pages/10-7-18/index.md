@@ -10,6 +10,22 @@ In the [last installment](https://dacrands.github.io/9-27-18), we discussed some
 
 In this example we will be using *Flask* for our back-end, though the general concept can be easily applied by developers of any stack. The idea is that our front-end application will ping our server, our server &mdash; based on the request from the client&mdash; will then access the API. In doing so, we no longer need an API-key to be present in the client request, it will be handled by our back-end.
 
+## Table of Contents
+---
+
+- [Prerequisites](#prereq)
+- [A Minimal Flask App](#minapp)
+  - [Create an Environment](#createEnv)
+  - [Activate an Environment](#activeEnv)
+- [App It Up](#appItUp)
+  - [\__init__.py](#init)
+  - [routes.py](#routes)
+  - [run.py](#run)
+  - [FLASK_APP](#flaskApp)
+- [Configuration](#config)
+  - [config.py](#configPy)
+
+<a id="prereq"><a>
 ## Prerequisites
 ---
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
@@ -17,11 +33,12 @@ My goal is to make this tutorial accessible to front-end developers with limited
 That said, you will likely get the most out of this post if you have a general understanding of what servers do, how they handle requests, how they respond, etc. Also, if you're a back-end developer, this is not for you. You know what to do already. This is for our front-end folks who want to hide their keys, nothing more. 
 
 
+<a id="minapp"><a>
 ## A Minimal Flask App
 ---
 This app will be extremely minimal. We don't need a database, we just a server to make requests to our API and pass JSON to our Redux app, nothing more. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
-
+<a id="createEnv"><a>
 ### Create an Environment
 When it comes to Python, I'm an [Anaconda](https://www.anaconda.com/download/) person. If you don't use Anaconda, the following instructions shouldn't be hard to follow using pip.
 
@@ -33,6 +50,8 @@ conda create --name flaskenv
 ```
 
 <br>
+
+<a id="activeEnv"><a>
 
 ### Activate an Environment
 I will demonstrate how to activate a Python environment on a Windows OS, simply because Windows users have it hard enough as it is.
@@ -71,6 +90,7 @@ Once you install `pip`, you can install `flask` using `pip`.
 
 Presuming everything went smoothly, we can move on to creating our app.
 
+<a id="appItUp"><a>
 
 ## App It Up
 ---
@@ -87,6 +107,8 @@ api-app/
 ```
 
 <br>
+
+<a id="init"><a>
 
 ### \__init__.py
 ```python
@@ -114,6 +136,9 @@ db = SQLAlchemy(app)
 This is how inheritance works in Python. The SQLAlchemy class (the child class) instance inherits `app` (the parent class) &mdash; this provides the child class with the attributes and methods of the parent class.
 
 Passing `__name__` to `Flask` tells Python the proper way to execute the file. This has to do with how Python executes imports versus main programs. For more information, you may reference [this stackoverflow post](https://stackoverflow.com/questions/419163/what-does-if-name-main-do).
+
+
+<a id="routes"><a>
 
 ### routes.py
 ```python
@@ -143,6 +168,7 @@ from app import routes
 
 We place the routes import at the bottom to avoid what's known as a *circular dependency* &mdash; you can learn more about this issue [here](https://stackabuse.com/python-circular-imports/).
 
+<a id="run"><a>
 
 ### run.py
 ```python
@@ -161,6 +187,8 @@ That's all the file requires. To clarify,  `app` is the Flask instance we create
 
 <br>
 
+<a id="flaskApp"><a>
+
 ### FLASK_APP
 ```
 (flaskenv) C:\api-app\>set FLASK_APP=run.py
@@ -178,6 +206,7 @@ Flask will look for an environment `FLASK_APP` set to, in this case, `run.py`. T
 
 If everything goes smoothly, you can visit your app at `http://127:0.0.0.1:5000/` and hopefully see "Hello, World" in the browser.
 
+<a id="config"><a>
 
 ## Configuration
 ---
@@ -211,6 +240,7 @@ from app import routes
 <br>
 
 
+<a id="configPy"><a>
 
 ### config.py
 
@@ -225,12 +255,32 @@ class Config(object):
 
 Recall in the first post when we used `process.env.API_KEY` to keep the API out of version-control? Well, `os.environ.get('API_KEY')` is doing the same thing. The configuration object will check to see if the environment variable `API_KEY` exists, if it doesn't we provide a sarcastic fallback.
 
+As a reminder, you set environment variables like this:
+
+```bash
+# Bash
+$ export API_KEY=someKey
+```
+
+```commandline
+:: windows
+(flaskenv) C:\api-app\> set API_KEY=someKey
+```
+
 As I mentioned this app is minimal, thus our `config.py` only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as an object. For example, accessing the `API_KEY` in our `config.py` file will look something like this:
 
-```
-app.config['API_KEY']
+```python
+from app import app
+
+...
+
+API_KEY = app.config['API_KEY']
 ```
 <br>
 
-I hope it's becoming clearer what is taking place in our `__init__.py` file.
+I hope it's becoming clearer what is taking place in our `__init__.py` file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
+
+
+
+
 
