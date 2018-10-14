@@ -12,9 +12,9 @@ In this example we will be using *Flask* for our back-end, though the general co
 
 ## Prerequisites
 ---
-My goal is to make this accessible to anyone, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
+My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
-Being stack agnostic, you will likely get the most out of this post if you have a general understanding of what servers do, how they handle requests, how they respond, etc. Also, if you're a back-end developer, this is not for you. You know what to do already. This is for our front-end folks who want to hide their keys, nothing more. 
+That said, you will likely get the most out of this post if you have a general understanding of what servers do, how they handle requests, how they respond, etc. Also, if you're a back-end developer, this is not for you. You know what to do already. This is for our front-end folks who want to hide their keys, nothing more. 
 
 
 ## A Minimal Flask App
@@ -100,7 +100,7 @@ If you'd like to learn more about Python class and OOP, [this article](https://j
 Here we are assigning an instance of the `Flask` class to the variable `app`. As your app becomes more complex, you will pass this class instance to other libraries. For example:
 
 
-*Note: This is an example and not part of this project.*
+
 ```python
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -108,7 +108,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 db = SQLAlchemy(app)
 ```
-
+*Note: This example is not part of this project.*
 <br>
 
 This is how inheritance works in Python. The SQLAlchemy class (the child class) instance inherits `app` (the parent class) &mdash; this provides the child class with the attributes and methods of the parent class.
@@ -176,4 +176,61 @@ Flask will look for an environment `FLASK_APP` set to, in this case, `run.py`. T
 
 <br>
 
-If everything goes smoothly, you can visit your app at `http://127:0.0.0.1:5000/`
+If everything goes smoothly, you can visit your app at `http://127:0.0.0.1:5000/` and hopefully see "Hello, World" in the browser.
+
+
+## Configuration
+---
+We are going to add a `config.py` file to our project. This is where the developer can define some variables that will be used throughout the application. It's a good place to create variables that the developer wants to keep secret, such as API-keys.
+
+Once you add the `config.py` file, your project structure should look something like this:
+
+```
+api-app/
+  app/
+    __init__.py
+    routes.py
+  run.py
+  config.py
+  requirements.txt
+```
+<br>
+
+Once we create our `config.py`, we need to tell our `app` to use it. Here config is referencing our file `config.py` and not an installed library.
+
+```python
+# app/__init__.py
+from flask import Flask
+from config import Config
+
+app = Flask(__name__)
+app.config.from_object(Config)
+
+from app import routes
+```
+<br>
+
+
+
+### config.py
+
+```python
+# app/config.py
+import os
+
+class Config(object):
+  API_KEY = os.environ.get('API_KEY') or 'nice-try'  
+```
+<br>
+
+Recall in the first post when we used `process.env.API_KEY` to keep the API out of version-control? Well, `os.environ.get('API_KEY')` is doing the same thing. The configuration object will check to see if the environment variable `API_KEY` exists, if it doesn't we provide a sarcastic fallback.
+
+As I mentioned this app is minimal, thus our `config.py` only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as an object. For example, accessing the `API_KEY` in our `config.py` file will look something like this:
+
+```
+app.config['API_KEY']
+```
+<br>
+
+I hope it's becoming clearer what is taking place in our `__init__.py` file.
+
