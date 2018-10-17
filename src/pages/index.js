@@ -14,7 +14,7 @@ import HerokuLogo from '../assets/logos/heroku-logo.svg';
 import JsLogo from '../assets/logos/js-logo.svg';
 import HtmlLogo from '../assets/logos/html-5-logo.svg';
 import FlaskLogo from '../assets/logos/flask-logo.svg';
-import Framework from '../assets/framework.svg';
+
 
 const H3 = styled.h3.attrs({
   weight: props => props.weight || ''

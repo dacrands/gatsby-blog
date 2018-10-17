@@ -19,11 +19,27 @@ const FooterMain = styled.footer`
   padding-bottom: .75em;
   padding: 0.2em 1em;
   color: #f1f1f1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // display: flex;
+  text-align: center;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
   align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    a {    
+      color: #f1f1f1;
+      text-decoration: none;
+      margin: 0 2rem;
+      margin-top: 0.45rem;
+      &:hover {
+        color: #1e85d0;
+      }
+    }
   
+    p {
+      margin-bottom: .45rem;
+      font-size: .7rem;
+    }
 `;
 
 const FooterLink = styled(Link)`
@@ -34,17 +50,17 @@ const FooterLink = styled(Link)`
 
 const FooterItem = styled.div`
   // outline: 3px dashed orange;
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   // flex-direction: column;    
-  align-items: center;  
+  // align-items: center;  
   a {    
     color: #f1f1f1;
     text-decoration: none;
     margin: 0 2rem;
     margin-top: 0.45rem;
     &:hover {
-      color: #1d669b; 
+      color: #1e85d0; 
     }
   }
 
@@ -74,18 +90,21 @@ const HomeSvg = styled(Home)`
 
 const Footer = () => (
   <FooterMain>
-      <FooterItem>        
+      {/* <FooterItem>         */}
           <FooterLink exact to="/">
-            { <HomeSvg /> }            
+            Home         
           </FooterLink>          
-        
+          <span>&#8729;</span> 
           <a target="_blank" href="https://github.com/dacrands">
-            { <GitSvg /> }
+            Github
+          </a>           
+          <span>&#8729;</span>           
+          <a target="_blank" href="https://dcrands.com/">
+            Portfolio
           </a>                      
-      </FooterItem>
-      <FooterItem>
-        <p>Built by dacrands using Gatsby JS</p>      
-      </FooterItem>
+  
+        <p>Built by David Crandall using Gatsby JS</p>      
+      {/* </FooterItem> */}
   </FooterMain>
 );
 

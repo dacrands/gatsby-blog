@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
+import ScrollButton from '../components/scroll_button'
 import './index.scss'
 require("prismjs/themes/prism-okaidia.css");
 
@@ -27,7 +28,7 @@ const Layout = ({ children, data }) => (
     >
       {children()}
     </div>
-
+      <ScrollButton />
     <Footer />
   </div>
 )
