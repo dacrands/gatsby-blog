@@ -28,29 +28,19 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  // outline: 3px dashed red;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-around;  
-  margin: 1rem 0;  
-  // display: inline-block 
-   
   h3 {
     margin-right: .75rem;
   }
 `;
 
 const StyledLink = styled(Link)`
-  display: block;
-  // border: 1px solid #dadada;    
+  display: block;  
   transition: all 200ms ease;
   text-decoration: none;
   color: #1e85d0;
-  padding: 1em;
-  // color: rgb(35,40,45);
+  padding: 1em;  
   box-shadow: 0 0 2px rgba(0,0,0,0.3);
   position: relative;
-
   p {
     margin: 0;
     &:last-of-type {
@@ -143,7 +133,7 @@ const MarqueeInner = styled.div`
   animation: ${slider} 20s linear infinite;
 `;
 
-const MarqueeSpan  = styled.span`
+const MarqueeSpan = styled.span`
   float: left;
   width: 50%;
 `;
@@ -163,18 +153,18 @@ function sortBlogs(blogs) {
 
 const IndexPage = ({ data }) => (
   <div>
-    <LandingWrapper>    
-      <LandingContainer>        
-        <H1 style={{marginTop: "1.45rem"}}>
-          Full-stack Web Developer          
+    <LandingWrapper>
+      <LandingContainer>
+        <H1 style={{ marginTop: "1.45rem" }}>
+          Full-stack Web Developer
         </H1>
         <H3 weight="400">
-          I love building <span style={{color: "#1e85d0"}}>awesome</span> websites.
+          I love building <span style={{ color: "#1e85d0" }}>awesome</span> websites.
         </H3>
       </LandingContainer>
     </LandingWrapper>
 
-    <LandingWrapper height="34vh">   
+    <LandingWrapper height="34vh">
       {/* <Landing bg="#f4f4f4" height="34vh"/>       */}
       <Marquee>
         <MarqueeInner>
@@ -203,40 +193,38 @@ const IndexPage = ({ data }) => (
             <JsLogo style={svgStyle} />
             <HtmlLogo style={svgStyle} />
             <FlaskLogo style={svgStyle} />
-          </MarqueeSpan>          
+          </MarqueeSpan>
         </MarqueeInner>
       </Marquee>
-    </LandingWrapper>    
+    </LandingWrapper>
     <LandingWrapper>
-    {/* <Landing>
+      {/* <Landing>
       </Landing> */}
       <LandingContainer>
         <H1>Blog</H1>
-        <Ul>    
-          {            
-            sortBlogs(data).slice(5).reverse().map(post => (
-              <Li>                         
-                <StyledLink 
+        <Ul>
+          {
+            sortBlogs(data).reverse().map(post => (
+              <Li>
+                <StyledLink
                   to={post.node.frontmatter.path}
-                >    
-                  <p>{post.node.frontmatter.title}</p>                         
+                >
+                  <p>{post.node.frontmatter.title}</p>
                   <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
-                  
-                </StyledLink>                
+                </StyledLink>
               </Li>
             ))
           }
         </Ul>
         <Link to="/blog">Read more blogs &rarr;</Link>
       </LandingContainer>
-    </LandingWrapper>  
-  
+    </LandingWrapper>
   </div>
 )
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(limit: 10) {
+    allMarkdownRemark(limit: 5) {
       edges {
         node {
           frontmatter {

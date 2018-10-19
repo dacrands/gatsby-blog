@@ -18,13 +18,13 @@ const Tag = styled.li`
   font-size: 0.8rem;
   color: #f1f1f1;
   background: #1e85d0;
-  // border-radius: 5px;
+  border-radius: 2px;
   // border: 2px solid #1e85d0;
   transition: all 200ms ease;
   &:hover {
     // cursor: pointer;
     background: #ffffff;
-    // color: #1e85d0;
+    color: #1e85d0;
   }
 `;
 
@@ -40,9 +40,6 @@ const Li = styled.li`
   box-shadow: 0 0 2px rgba(0,0,0,0.3);
   &:hover {
     background: #ffffff;
-    // color: rgb(35,40,45);
-    // color: #1e85d0;
-    
     box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
   }
 `;
@@ -74,9 +71,8 @@ function sortBlogs(blogs) {
 
 const SecondPage = ( {data}) => (
   <div>
-    <h1>Blog</h1>
-    <p>Just amusing musings</p>
-
+    <h1 style={{ color: "#1e85d0" }}>Blog</h1>
+    <h3 style={{ fontWeight:"100" }}>Writings and tutorials about programming.</h3>
     <Ul>    
         {          
           sortBlogs(data).map(post => (
