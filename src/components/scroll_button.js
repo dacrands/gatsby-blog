@@ -28,7 +28,7 @@ class ScollButton extends Component {
 
   componentDidMount() {
     document.addEventListener('scroll', () => {
-      window.scrollY > 100
+      window.scrollY > 500
       ? this.setState( {show:true})
       : this.setState( {show:false})
     })
