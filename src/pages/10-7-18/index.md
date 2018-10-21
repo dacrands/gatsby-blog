@@ -10,7 +10,7 @@ tags: ['Python', 'virtual environments', 'pip', 'Requests']
 
 In the [last installment](https://dacrands.github.io/9-27-18), we discussed some ways in which front-end developers can protect their API-keys. Ultimately we came to the conclusion that to truly protect your API-keys, you will need a designated back-end &mdash; a proxy server &mdash; to handle your API calls.
 
-In this example we will be using *Flask* for our back-end, though the general concept can be easily applied by developers of any stack. The idea is that our front-end application will ping our server, our server &mdash; based on the request from the client&mdash; will then access the API. In doing so, we no longer need an API-key to be present in the client request, it will be handled by our back-end.
+In this example we will be using *Flask* to create such an application, though the general concept can be easily applied by developers of any stack. The general idea is that our front-end application will send a request to our *Flask* app. Then our app, based on the request from the client, will send a request to the API. In doing so, we no longer need an API-key to be present in the client request since it will be handled by our back-end.
 
 ## Table of Contents
 ---
@@ -28,60 +28,81 @@ In this example we will be using *Flask* for our back-end, though the general co
 - [Configuration](#config)
   - [config.py](#configPy)
 
-<a id="prereq"><a>
+<a id="prereq"></a>
 
 ## Prerequisites
 ---
 
+- an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
+- Basic command-line skills
+- Python 3
+- Postman 
+
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
-That said, you will likely get the most out of this post if you have a general understanding of what servers do, how they handle requests, how they respond, etc. Also, if you're a back-end developer, this is not for you. You know what to do already. This is for our front-end folks who want to hide their keys, nothing more. 
+If you're a back-end developer, this is not for you. You know what to do already. This is for our beginner front-end developers who want to hide their keys, nothing more.
 
-<a id="theApp"><a>
+<a id="theApp"></a>
 
 ## What We're Making
 ---
 
-This app is an extremely minimal Flask server. We don't need a database, we just a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
+This app is an extremely minimal Flask server. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
+
+If you're looking for an in-depth introduction to Flask, Miguel Ginberg's [Flask mega tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is excellent.
 
 
-<a id="env"><a>
+<a id="env"></a>
 
 ## Environments
 ---
 
-For any Python project, regardless of it's size and complexity, it's a good idea to create a virtual environment. This ensures that as libraries update and backwards-compatability becomes an issue, your app will still work.
+For any Python project, regardless of it's size or complexity, it's a good idea to create a virtual environment. This ensures that as libraries update and backwards-compatability becomes an issue, your app will still work.
 
-<a id="createEnv"><a>
+<a id="createEnv"></a>
 
 ### Create an Environment
 
-When it comes to Python, I'm an [anaconda](https://www.anaconda.com/download) person. If you don't use Anaconda, the following instructions shouldn't be hard to follow using pip.
+When it comes to Python, I'm an  [Anaconda](https://www.anaconda.com/) person. Anconda is basically Python but it comes bundled with a lot of data-science libraries and other features like [Jupyter Notebooks](http://jupyter.org/). I suggest you give it a try. 
+
+Find the [download instructions](https://www.anaconda.com/download) for your OS and install Anaconda. If you don't use Anaconda, here are the instructions for [creating a virtualenv with pip](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/). We will only being using `conda`, the Anaconda CLI, for creating our environment and downloading `pip`. After that, we will use `pip` for everything else.
 
 
-Now that that's out of the way, go ahead and create an environment for your flask app:
+Now that that's out of the way, go ahead and create an environment for your Flask app using `conda`:
 
-```ps
-conda create --name flaskenv
+```commandline
+C:\> conda create --name flaskenv
 ```
 
 <br>
 
-<a id="activeEnv"><a>
+This will create a virtual environment named `flaskenv`.
+To see a list of your virtual environments, run the following:
 
-### Activate an Environment
+```commandline
+C:\> conda info --env
+```
+<br>
+
+This will print a list of your environments to the console. Learn more about [managing environments with conda](https://conda.io/docs/user-guide/tasks/manage-environments.html).
+
+<a id="activeEnv"></a>
+
+### Activating an Environment
 
 I will demonstrate how to activate a Python environment on a Windows OS, simply because Windows users have it hard enough as it is.
+
 
 I love *PowerShell,* but when it comes to Python virtual-environments, you'll want to use the command prompt. We have a lot to cover in this post, so I won't go in-depth as to why we are using the latter versus the former, though I encourage you to play around with both options to discover the answer organically.
 
 ```commandline
 C:\> activate flaskenv
 (flaskenv) C:\> 
-
 ```
 
 <br>
+
+
 
 Once your environment is activated, you can start installing your packages. The first package you will need is `pip`, as this is how we will be downloading our packages. I know this may appear a bit strange to download a package-manager inside a package-manager, but it demonstrates the flexibility of using `conda`.
 
@@ -92,7 +113,7 @@ Once your environment is activated, you can start installing your packages. The 
 
 <br>
 
-Now we can use pip to install our packages, but always make sure your environment is active before doing so. If your environment is not active, not only will you not be downloading all of those packages globally on your machine, but you will not be able to save the packages you use to the `requirements.txt` file, which is used to automatically download all of the packages in your application (Think of the `requirements.txt` as a `package.json` because it essentially is).
+Now we can use `pip` to install our packages, but always make sure your environment is active before doing so. If your environment is not active, not only will you be downloading all of those packages globally on your machine, but you will not be able to save the packages you use to the `requirements.txt` file, which is used to automatically download all of the packages in your application (Think of the `requirements.txt` as a `package.json` because it essentially is).
 
 
 
@@ -107,12 +128,12 @@ Once you install `pip`, you can install `flask` using `pip`.
 
 Presuming everything went smoothly, we can move on to creating our app.
 
-<a id="appItUp"><a>
+<a id="appItUp"></a>
 
 ## App It Up
 ---
 
-Create a new directory `api-app` with the following structure. 
+Create a new directory `api-app` with the following structure:
 
 ```
 api-app/
@@ -124,7 +145,7 @@ api-app/
 
 <br>
 
-<a id="init"><a>
+<a id="init"></a>
 
 ### \__init__.py
 
@@ -134,7 +155,9 @@ from flask import Flask
 app = Flask(__name__)
 ```
 
-If you'd like to learn more about Python class and OOP, [this article](https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/) is excellent.
+<br>
+
+If you'd like to learn more about Python class and OOP, [this article](https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/) by Jeff Knupp is a good start.
 
 Here we are assigning an instance of the `Flask` class to the variable `app`. As your app becomes more complex, you will pass this class instance to other libraries. For example:
 
@@ -152,10 +175,10 @@ db = SQLAlchemy(app)
 
 This is how inheritance works in Python. The SQLAlchemy class (the child class) instance inherits `app` (the parent class) &mdash; this provides the child class with the attributes and methods of the parent class.
 
-Passing `__name__` to `Flask` tells Python the proper way to execute the file. This has to do with how Python executes imports versus main programs. For more information, you may reference [this stackoverflow post](https://stackoverflow.com/questions/419163/what-does-if-name-main-do).
+Passing `__name__` to `Flask` tells Python the proper way to execute the file. This has to do with how Python executes programs. For more information, you may reference [this stackoverflow post](https://stackoverflow.com/questions/419163/what-does-if-name-main-do).
 
 
-<a id="routes"><a>
+<a id="routes"></a>
 
 ### routes.py
 
@@ -186,7 +209,7 @@ from app import routes
 
 We place the routes import at the bottom to avoid what's known as a *circular dependency* &mdash; you can learn more about this issue [here](https://stackabuse.com/python-circular-imports/).
 
-<a id="run"><a>
+<a id="run"></a>
 
 ### run.py
 ```python
@@ -197,14 +220,14 @@ from app import app
 
 That's all the file requires. To clarify,  `app` is the Flask instance we created in `__init__.py`, and it is a member of the `app` package. The `app` package refers to the `/app` folder in our directory, thus why in our `__init__.py` file we are able to import our `routes` from `app`.
 
-```
+<!-- ```
 /app
   routes.py
-```
+``` -->
 
-<br>
+<!-- <br> -->
 
-<a id="flaskApp"><a>
+<a id="flaskApp"></a>
 
 ### FLASK_APP
 ```
@@ -223,7 +246,7 @@ Flask will look for an environment `FLASK_APP` set to, in this case, `run.py`. T
 
 If everything goes smoothly, you can visit your app at `http://127:0.0.0.1:5000/` and hopefully see "Hello, World" in the browser.
 
-<a id="config"><a>
+<a id="config"></a>
 
 ## Configuration
 ---
@@ -256,7 +279,7 @@ from app import routes
 <br>
 
 
-<a id="configPy"><a>
+<a id="configPy"></a>
 
 ### config.py
 
@@ -283,7 +306,11 @@ $ export API_KEY=someKey
 (flaskenv) C:\api-app\> set API_KEY=someKey
 ```
 
-As I mentioned this app is minimal, thus our `config.py` only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as an object. For example, accessing the `API_KEY` in our `config.py` file will look something like this:
+<br>
+
+As I mentioned this app is minimal, thus our `config.py` only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as a JS-object &mdash; a collection of *key*, *value* pairings. 
+
+For example, accessing the `API_KEY` defined in our `config.py` file will look something like this:
 
 ```python
 from app import app
@@ -334,6 +361,8 @@ def index():
     apiData = jsonify(res.json())
     return apiData
 ```
+
+
 
 
 

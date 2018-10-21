@@ -204,7 +204,7 @@ const IndexPage = ({ data }) => (
         <H1>Blog</H1>
         <Ul>
           {
-            sortBlogs(data).reverse().map(post => (
+            sortBlogs(data).slice(5).reverse().map(post => (
               <Li>
                 <StyledLink
                   to={post.node.frontmatter.path}
@@ -224,7 +224,7 @@ const IndexPage = ({ data }) => (
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(limit: 5) {
+    allMarkdownRemark(limit: 90) {
       edges {
         node {
           frontmatter {
