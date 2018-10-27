@@ -8,9 +8,9 @@ tags: ['Python', 'virtual environments', 'pip', 'Requests']
 
 *(This blog post is a work in progress.)*
 
-In the [last installment](https://dacrands.github.io/9-27-18), we discussed some ways in which front-end developers can protect their API-keys. Ultimately we came to the conclusion that to truly protect your API-keys, you will need a designated back-end &mdash; a proxy server &mdash; to handle your API calls.
+In the [last installment](https://dacrands.github.io/9-27-18), we discussed some ways in which front-end developers can protect their API-keys. .We came to the conclusion that to truly protect your API-keys, you will need a designated back-end &mdash; a proxy server &mdash; to handle your API calls.
 
-In this example we will be using *Flask* to create such an application, though the general concept can be easily applied by developers of any stack. The general idea is that our front-end application will send a request to our *Flask* app. Then our app, based on the request from the client, will send a request to the API. In doing so, we no longer need an API-key to be present in the client request since it will be handled by our back-end.
+In this example we will be using *Flask* to create such an application, though the general concept can be easily applied by developers of any stack. The idea is that our front-end application will send a request to our *Flask* app. Then our app, based on the request from the client, will send a request to the API. In doing so, we no longer need an API-key to be present in the client request since it will be handled by our back-end.
 
 ## Table of Contents
 ---
@@ -27,6 +27,8 @@ In this example we will be using *Flask* to create such an application, though t
   - [FLASK_APP](#flaskApp)
 - [Configuration](#config)
   - [config.py](#configPy)
+- [Requests](#requests)
+  - [Let's make a request](#makeRequest)
 
 <a id="prereq"></a>
 
@@ -36,7 +38,7 @@ In this example we will be using *Flask* to create such an application, though t
 - an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
 - Basic command-line skills
 - Python 3
-- Postman. [Here is the download] 
+- Postman. [Download Postman] 
 
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
@@ -325,6 +327,8 @@ API_KEY = app.config['API_KEY']
 
 I hope it's becoming clearer what is taking place in our `__init__.py` file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
 
+<a id="requests"></a>
+
 ## Requests
 ---
 
@@ -340,6 +344,8 @@ Run the following in your terminal:
 ```
 
 <br>
+
+<a id="makeRequest"></a>
 
 ### Lets make a request
 
@@ -401,16 +407,14 @@ Sorry for the console dump, but you get a sense of the data. By calling `res.jso
 145.83
 ```
 
+<br>
 
+I encourage you to play around a bit with the `requests` library. Otherwise, let's get back to the app.
 
+## Routes
+---
 
-
-
-
-
-
-
-Once you have `requests` installed, make the following modifications to `app/routes.py`:
+Make the following modifications to `app/routes.py`:
 ```python
 from app import app
 from flask import jsonify
@@ -432,13 +436,7 @@ def index():
 
 <br>
 
-Let's go through this. 
-
-```python
-res = requests.get(
-        'https://api.your-api.com/something.json?api-key={0}'
-        .format(app.config['API_KEY']))
-```
+As you can see, we pass our `res.json()` to `jsonify()`, which is imported from `flask`. This is because `res.json()` does not provide the encoding we need. By passing our data to `jsonify`, we now get a flask *Response* object that will properly serialize our data as *application/json* mimetype.
 
 <br>
 
