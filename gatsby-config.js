@@ -7,6 +7,12 @@ module.exports = {
     `gatsby-plugin-sass`,
     'gatsby-transformer-remark',
     {
+      resolve:`gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-127816565-2"
+      },
+    },
+    {
       resolve: 'gatsby-plugin-react-svg',
       options: {
           include: /assets/

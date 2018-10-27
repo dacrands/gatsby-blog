@@ -36,7 +36,7 @@ In this example we will be using *Flask* to create such an application, though t
 - an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
 - Basic command-line skills
 - Python 3
-- Postman 
+- Postman. [Here is the download] 
 
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
@@ -46,6 +46,8 @@ If you're a back-end developer, this is not for you. You know what to do already
 
 ## What We're Making
 ---
+
+![Imgur](https://i.imgur.com/8RAVXwH.png)
 
 This app is an extremely minimal Flask server. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
@@ -323,13 +325,11 @@ API_KEY = app.config['API_KEY']
 
 I hope it's becoming clearer what is taking place in our `__init__.py` file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
 
-## Routes
+## Requests
 ---
 
 Now that our basic Flask app is in place, we can begin creating the routes our front-end will access. For this tutorial we will only create one route, though the logic is easily replicable for additional routes.
 
-
-### Requests
 
 To access the API, we will use the Python's `requests` library. 
 
@@ -341,8 +341,76 @@ Run the following in your terminal:
 
 <br>
 
-Once you have `requests` installed, make the following modifications to `app/routes.py`:
+### Lets make a request
 
+Close your app if it's running, and enter `python` in your terminal. This will activate the Python command-line, which is where we'll explore the `requests` library.
+
+```commandline
+(flaskenv) C:\api-app\>python
+Python 3.6.0 |Anaconda custom (64-bit)| (default, Dec 23 2016, 11:57:41) 
+[MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+
+```
+*To exit the Python terminal,  enter* `quit()`*, because* `ctrl-c` *won't do it.*
+
+
+For this example, let's use an API that doesn't require a key. We will use the [IEX API](https://iextrading.com/developer/docs/), a free stock API.
+
+**Copy this URL:** `https://api.iextrading.com/1.0/stock/market/batch?symbols=fb,f&types=quote,news`
+
+Here `fb` and `f` are ticker symbols for Facebook and Ford, respectively. Even if you pass invalid symbol parameters (i.e., ticker symbols that don't exist), the API response will still return data for valid queries, which is really nice.
+
+Let's make our first request. Enter the following in your Python terminal:
+
+```
+>>>import requests
+>>>res = requests.get('https://api.iextrading.com/1.0/stock/market/batch?symbols=fb,asdasdasd,f&types=quote,news')
+```
+
+<br>
+
+`requests.get()` will make a *GET* request to the passed URL and return a `<Response>` object. This object will have attributes expected in an HTTP response.
+
+For example, let's make sure the request was succcessful:
+
+```
+>>> res.status_code
+200
+```
+<br>
+
+If everything goes well, we get the glorious status code of `200`.
+
+Since we know our request was successful, let's take a look at the data:
+
+```
+>>> resJson = res.json()
+>>> resJson
+{'FB': {'quote': {'symbol': 'FB','companyName': 'Facebook Inc.''primaryExchange': 'Nasdaq Global Select' 'sector':
+...
+```
+
+<br>
+
+Sorry for the console dump, but you get a sense of the data. By calling `res.json()` we can now index our data, so let's get some data that's a bit more managable:
+
+```
+>>> resJson['FB']['quote']['open']
+145.83
+```
+
+
+
+
+
+
+
+
+
+
+Once you have `requests` installed, make the following modifications to `app/routes.py`:
 ```python
 from app import app
 from flask import jsonify
@@ -361,6 +429,20 @@ def index():
     apiData = jsonify(res.json())
     return apiData
 ```
+
+<br>
+
+Let's go through this. 
+
+```python
+res = requests.get(
+        'https://api.your-api.com/something.json?api-key={0}'
+        .format(app.config['API_KEY']))
+```
+
+<br>
+
+### Introducing Postman
 
 
 
