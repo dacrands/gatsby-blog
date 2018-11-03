@@ -38,7 +38,6 @@ In this example we will be using *Flask* to create such an application, though t
 - an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
 - Basic command-line skills
 - Python 3
-- Postman. [Download Postman] 
 
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
@@ -438,9 +437,17 @@ def index():
 
 As you can see, we pass our `res.json()` to `jsonify()`, which is imported from `flask`. This is because `res.json()` does not provide the encoding we need. By passing our data to `jsonify`, we now get a flask *Response* object that will properly serialize our data as *application/json* mimetype.
 
-<br>
+Visit `http://localhost:5000` and you should see a whole bunch of data. If you use *Chrome,* [download JSON view](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en). *JSON view* will format your JSON data so it doesn't appear as one big mess in your browser.
 
-### Introducing Postman
+Once you download *JSON view,* you should see something like this when you access the route:
+
+![Imgur](https://i.imgur.com/KSS78J5l.jpg)
+
+## Hosting
+---
+
+So your basic application is now in place, so how do you use it?
+
 
 
 
