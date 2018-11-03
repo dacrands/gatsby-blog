@@ -77,7 +77,7 @@ const Header = ({ siteTitle }) => (
           </Link>
         </li>
         <li>
-          <a href="https://mysterious-brushlands-44734.herokuapp.com/">Portfolio</a>
+          <a href="dcrands.com">Portfolio</a>
         </li>        
         <li>
           <a href="https://github.com/dacrands">Github</a>
