@@ -70,22 +70,9 @@ const LandingWrapper = styled.div.attrs({
 })`
   position: relative;
   height: 100%;
-  min-height: ${props => props.height}   
+  /* min-height: ${props => props.height}    */
 `;
 
-const Landing = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '34vh'
-})`
-  min-height: ${props => props.height}
-  position: absolute;    
-  z-index: -1;
-  // margin-top: -1.45rem;  
-  width: 500%;    
-  margin-left: -200%;
-  height: 100%;  
-  background: ${props => props.background};  
-`;
 
 const H1 = styled.h1.attrs({
   color: props => props.color || '#1e85d0'
@@ -96,14 +83,12 @@ const H1 = styled.h1.attrs({
 
 const LandingContainer = styled.div.attrs({
   background: props => props.bg || '#ffffff',
-  height: props => props.height || '34vh'
+  height: props => props.height || '30vh'
 })`
   margin: 0 auto;
-  max-width: 960px;
-  // margin-top: -1.45rem;
-  // margin-bottom: 1.45rem;
+  max-width: 960px;  
   height: 100%;
-  min-height: ${props => props.height} 
+  min-height: ${props => props.height};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,12 +98,13 @@ const Marquee = styled.section`
   // max-width: 1400px;
   margin: 0 auto;
   // outline: 2px solid orange;
-  min-height: 300px;
+  min-height: 200px;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  margin-bottom: 2.45rem;
 `;
 
 const slider = keyframes`
@@ -160,7 +146,7 @@ const IndexPage = ({ data }) => (
         </H1>
         <H3 weight="400">
           I love building <span style={{ color: "#1e85d0" }}>awesome</span> websites.
-        </H3>
+        </H3>        
       </LandingContainer>
     </LandingWrapper>
 

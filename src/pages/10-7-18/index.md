@@ -38,6 +38,7 @@ In this example we will be using *Flask* to create such an application, though t
 - an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
 - Basic command-line skills
 - Python 3
+- Git/Github
 
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
@@ -326,6 +327,10 @@ API_KEY = app.config['API_KEY']
 
 I hope it's becoming clearer what is taking place in our `__init__.py` file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
 
+## Debug
+---
+
+
 <a id="requests"></a>
 
 ## Requests
@@ -441,12 +446,56 @@ Visit `http://localhost:5000` and you should see a whole bunch of data. If you u
 
 Once you download *JSON view,* you should see something like this when you access the route:
 
-![Imgur](https://i.imgur.com/KSS78J5l.jpg)
+![JSON view example](https://i.imgur.com/KSS78J5l.jpg)
+
+Now what you see in the browser when you visit `localhost:5000` should look **exactly** the same as when you place the actual API URL in the browser. The primary difference, of course, is now your API-key will not appear in the response:
+
+![Example of response with no API-key](https://i.imgur.com/4jtwzwdl.jpg)
+
+<!-- ### More routes -->
+
+
+
+
 
 ## Hosting
 ---
 
-So your basic application is now in place, so how do you use it?
+Your basic application is now in place, so how do you use it? Well it needs to be hosted on a server. We are going to configure two servers: one for  **development** and one for **production**. The development server will be served locally on your machine &mdash; this is the server you will use while you build and debug your front-end application. The production will be hosted on [Heroku](https://www.heroku.com/), which offers both free and reasonably priced monthly plans ($7 a month). 
+
+Configuring the development server will be extremely easy. In fact, it's about one line from the console. The production server, however, will take a bit more effort. Heroku will provide you
+
+
+### Development
+
+First, find our your IP-address. If you have *PowerShell,* run the following:
+
+```ps
+C:\> Get-NetIPAddress
+```
+<br>
+
+In the output, look for the IP-address starting with `192.168.0.xxx`
+
+Once you have your IP-address, run the following in the console.
+
+```commandline
+(flaskenv) C:\api-app\>flask run --host 0.0.0.0
+```
+
+<br>
+
+Now visit the following in the browser:
+```
+# replace the xs with your IP information
+192.168.0.xxx:5000
+```
+<br>
+
+Now find another device with a web-browser and visit the same address. It still works! How cool is that? Now you can free up `localhost` to host your front-end application &mdash; just point it to API-calls to `192.168.0.xxx:5000`.
+
+### Production
+
 
 
 
