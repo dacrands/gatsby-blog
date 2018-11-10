@@ -8,7 +8,7 @@ tags: ['Python', 'virtual environments', 'pip', 'Requests']
 
 *(This blog post is a work in progress.)*
 
-In the [last installment](https://dacrands.github.io/9-27-18), we discussed some ways in which front-end developers can protect their API-keys. .We came to the conclusion that to truly protect your API-keys, you will need a designated back-end &mdash; a proxy server &mdash; to handle your API calls.
+In the [last installment](https://dacrands.github.io/9-27-18), we discussed some ways in which front-end developers can protect their API-keys. We came to the conclusion that to truly protect your API-keys, you will need a designated back-end &mdash; a proxy server &mdash; to handle your API calls.
 
 In this example we will be using *Flask* to create such an application, though the general concept can be easily applied by developers of any stack. The idea is that our front-end application will send a request to our *Flask* app. Then our app, based on the request from the client, will send a request to the API. In doing so, we no longer need an API-key to be present in the client request since it will be handled by our back-end.
 
@@ -16,21 +16,23 @@ In this example we will be using *Flask* to create such an application, though t
 ---
 
 - [Prerequisites](#prereq)
+  <!-- - [Git/Github](#git)   -->
 - [What we're making](#theApp)
 - [Environments](#env)
-  - [Create an Environment](#createEnv)
-  - [Activate an Environment](#activeEnv)
+  <!-- - [Create an Environment](#createEnv) -->
+  <!-- - [Activate an Environment](#activeEnv) -->
 - [App It Up](#appItUp)
-  - [\__init__.py](#init)
-  - [routes.py](#routesPy)
-  - [run.py](#run)
-  - [FLASK_APP](#flaskApp)
+  <!-- - [\__init__.py](#init) -->
+  <!-- - [routes.py](#routesPy) -->
+  <!-- - [run.py](#run) -->
+  <!-- - [FLASK_APP](#flaskApp) -->
 - [Configuration](#config)
-  - [config.py](#configPy)
+  <!-- - [config.py](#configPy) -->
 - [Requests](#requests)
-  - [Let's make a request](#makeRequest)
+  <!-- - [Let's make a request](#makeRequest) -->
 - [Routes](#requests)
-  - [Let's make a request](#makeRequest)
+- [Hosting](#hosting)
+  <!-- - [Download Heroku](#heroku) -->
 
 <a id="prereq"></a>
 
@@ -46,6 +48,8 @@ My goal is to make this tutorial accessible to front-end developers with limited
 
 If you're a back-end developer, this is not for you. You know what to do already. This is for our beginner front-end developers who want to hide their keys, nothing more.
 
+<a id="git"></a>
+
 ### Git/Github
 At some point in this project, you will need to create a git repo. At what point in the application you integrate version-control is up to you, but having basic git-skills is needed for when we host the finished-product on *Heroku.*
 
@@ -56,6 +60,8 @@ At some point in this project, you will need to create a git repo. At what point
 ---
 
 ![Imgur](https://i.imgur.com/8RAVXwH.png)
+
+Here is [Github repo](https://github.com/dacrands/flask-blog-tutorial) for what we're building.
 
 This app is an extremely minimal Flask app. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
@@ -139,9 +145,10 @@ Once you install `pip`, you can install `flask` using `pip`.
 
 ### requirements.txt
 ```
-(flaskenv) C:\> pip freeze > requirements.txt
-
+(flaskenv) C:\api-app\> pip freeze > requirements.txt
 ```
+
+This will save your packages to a file that can be used to install your app dependencies.
 
 <br>
 
@@ -474,6 +481,7 @@ Now what you see in the browser when you visit `localhost:5000` should look **ex
 
 When developing, the only thing you need to do is make sure your front-end app and back-end app are listening on different ports. For example, your front-end app will run on port `8000` and your back-end app will run on port `5000`.
 
+<a id="hosting"></a>
 
 ## Hosting
 ---
@@ -516,6 +524,8 @@ Okay, so what's the difference between this and simply running the
 Now find another device with a web-browser and visit the same address. It still works! How cool is that? Now you can free up `localhost` to host your front-end application &mdash; just point it to API-calls to `192.168.0.xxx:5000`. -->
 
 We will use *Heroku* to host our application since it is the most user-friendly option, however I suggest you check out *Digitalocean,* go through some tutorials, and challenge yourself a bit. Otherwise, *Heroku* is still an excellent and popular hosting service.
+
+<a id="heroku"></a>
 
 ### Download Heroku
 
@@ -565,20 +575,62 @@ You can configure environment variables in two ways with Heroku:
 1. Through the Heroku dashboard on their site
 2. Through the `Heroku CLI`
 
-Since this is a programming tutorial, we'll be using the CLI to configure the two environment variables used in this application.
+Since this is a programming tutorial, we'll be using the CLI to configure the two environment variables used in this application. Also, Heroku has a really cool CLI.
 
 Run the following in the terminal:
 
 ```commandline
 (flaskenv) C:\api-app\>heroku config:set FLASK__APP=run.py
-
 ...
-
 (flaskenv) C:\api-app\>heroku config:set API_KEY=<YOUR_API_KEY>
 ```
 <br>
 
 ### git push heroku master
+
+Now comes the moment of truth &mdash; pushing your `master` branch to Heroku. Two item checklist before pushing to Heroku:
+
+1. Make sure all necessary packages are in your `requirements.txt` file:
+```
+(flaskenv) C:\api-app\> pip freeze > requirements.txt
+```
+<br>
+2. Make sure your `master` branch is up to date.
+
+And that's about it. If you've done those two things, then you're ready to push to Heroku:
+
+```
+(flaskenv) C:\api-app\>git push heroku master
+```
+
+<br>
+
+You should see some command-line output, followed by `Verifying deploy... done.`
+
+Now open your app and see your data:
+```
+(flaskenv) C:\api-app\>heroku open
+```
+<br>
+
+When the site opens in your browser, you should see your JSON.
+
+And that's about it. When you're ready to show your app to people you can upgrade your plan and the server won't turn off after thirty-minutes.
+
+
+## Conclusion
+
+This is only a start. Obviously anyone could potentially create target your heroku-app since we did not implement CORS, but it's better than leaving your keys in the code or making API calls directly from the client. By implementing an app such as this you demonstrate you're a front-end developer who is security conscious, which is important.
+
+
+
+
+
+
+
+
+
+
 
 
 
