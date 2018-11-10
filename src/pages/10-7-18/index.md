@@ -51,7 +51,7 @@ If you're a back-end developer, this is not for you. You know what to do already
 
 ![Imgur](https://i.imgur.com/8RAVXwH.png)
 
-This app is an extremely minimal Flask server. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
+This app is an extremely minimal Flask app. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
 If you're looking for an in-depth introduction to Flask, Miguel Ginberg's [Flask mega tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is excellent.
 
@@ -455,18 +455,24 @@ Now what you see in the browser when you visit `localhost:5000` should look **ex
 <!-- ### More routes -->
 
 
+### Development
 
+When developing, the only thing you need to do is make sure your front-end app and back-end app are listening on different ports. For example, your front-end app will run on port `8000` and your back-end app will run on port `5000`.
 
 
 ## Hosting
 ---
 
-Your basic application is now in place, so how do you use it? Well it needs to be hosted on a server. We are going to configure two servers: one for  **development** and one for **production**. The development server will be served locally on your machine &mdash; this is the server you will use while you build and debug your front-end application. The production will be hosted on [Heroku](https://www.heroku.com/), which offers both free and reasonably priced monthly plans ($7 a month). 
+<!-- Your basic application is now in place, so how do you use it? Well it needs to be hosted on a server. We are going to configure two servers: one for  **development** and one for **production**. The development server will be served locally on your machine &mdash; this is the server you will use while you build and debug your front-end application. The production will be hosted on [Heroku](https://www.heroku.com/), which offers both free and reasonably priced monthly plans ($7 a month).  -->
 
-Configuring the development server will be extremely easy. In fact, it's about one line from the console. The production server, however, will take a bit more effort. Heroku will provide you
+<!-- Configuring the development server will be extremely easy. In fact, it's about one line from the console. The production server, however, will take a bit more effort. Heroku will provide you -->
 
 
-### Development
+
+
+<!-- #### Run on a different machine
+
+Although you can run both your front-end and back-end on the same computer, you may not want to. Luckily, provided you have Python configured on another machien
 
 First, find our your IP-address. If you have *PowerShell,* run the following:
 
@@ -487,14 +493,23 @@ Once you have your IP-address, run the following in the console.
 
 Now visit the following in the browser:
 ```
-# replace the xs with your IP information
 192.168.0.xxx:5000
 ```
 <br>
 
-Now find another device with a web-browser and visit the same address. It still works! How cool is that? Now you can free up `localhost` to host your front-end application &mdash; just point it to API-calls to `192.168.0.xxx:5000`.
+Okay, so what's the difference between this and simply running the 
+Now find another device with a web-browser and visit the same address. It still works! How cool is that? Now you can free up `localhost` to host your front-end application &mdash; just point it to API-calls to `192.168.0.xxx:5000`. -->
 
-### Production
+We will use *Heroku* to host our application since it is the most user-friendly option, however I suggest you check out *Digitalocean,* go through some tutorials, and challenge yourself a bit. Otherwise, *Heroku* is still an excellent and popular hosting service.
+
+### Download Heroku
+
+The first thing you need to do is [download the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and go through the tutorial &mdash; this will take you through the proces of creating your first heroku app.
+
+We will be using Heroku's free plan, because it's free. The catch, however, is that your application will turn off after 30 minutes. If you decide to upgrade your plan to `hobby`, it's only about $7 a month depending on your site's traffic.
+
+
+
 
 
 

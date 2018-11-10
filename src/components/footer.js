@@ -6,26 +6,18 @@ import Git from '../assets/github.svg';
 import Home from '../assets/home.svg';
 
 const FooterMain = styled.footer`
-  // outline: 3px dashed purple;
-  
   background: rgb(35, 40, 45);
-  // position: fixed;
-  // bottom: 0;  
   position: absolute;
   left: 0;
-  right: 0;
-  // margin-top: -2.9rem;
+  right: 0;  
   margin-bottom: 0;
   padding-bottom: .75em;
   padding: 0.2em 1em;
   color: #f1f1f1;
-  // display: flex;
-  text-align: center;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
   align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: .7rem;
     a {    
       color: #f1f1f1;
       text-decoration: none;
@@ -34,30 +26,27 @@ const FooterMain = styled.footer`
       &:hover {
         color: #1e85d0;
       }
+      &:first-of-type {
+        margin-left: 0;
+      }
     }
   
     p {
       margin-bottom: .45rem;
-      font-size: .7rem;
+      
     }
 `;
 
-const FooterLink = styled(Link)`
-  // outline: 3px dashed blue;  
+const FooterLink = styled(Link)`  
   text-decoration: none;
-  margin: .45rem;
+  /* margin: .45rem; */
 `;
 
 const FooterItem = styled.div`
-  // outline: 3px dashed orange;
-  // display: flex;
-  // flex-wrap: wrap;
-  // flex-direction: column;    
-  // align-items: center;  
   a {    
     color: #f1f1f1;
     text-decoration: none;
-    margin: 0 2rem;
+    margin-right: 1rem;
     margin-top: 0.45rem;
     &:hover {
       color: #1e85d0; 
@@ -90,21 +79,20 @@ const HomeSvg = styled(Home)`
 
 const Footer = () => (
   <FooterMain>
-      {/* <FooterItem>         */}
-          <FooterLink exact to="/">
-            Home         
-          </FooterLink>          
-          <span>&#8729;</span> 
-          <a target="_blank" href="https://github.com/dacrands">
-            Github
-          </a>           
-          <span>&#8729;</span>           
-          <a target="_blank" href="https://dcrands.com/">
-            Portfolio
-          </a>                      
-  
-        <p>Built by David Crandall using Gatsby JS</p>      
-      {/* </FooterItem> */}
+    {/* <FooterItem>         */}
+      <FooterLink exact to="/">
+        Home         
+      </FooterLink>          
+      <span>&#8729;</span> 
+      <a target="_blank" href="https://github.com/dacrands">
+        Github
+      </a>           
+      <span>&#8729;</span>           
+      <a target="_blank" href="https://dcrands.com/">
+        Portfolio
+      </a>                        
+      <p>© 2018 by David Crandall. All rights reserved. 🌏</p>      
+    {/* </FooterItem> */}
   </FooterMain>
 );
 
