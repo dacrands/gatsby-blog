@@ -22,12 +22,14 @@ In this example we will be using *Flask* to create such an application, though t
   - [Activate an Environment](#activeEnv)
 - [App It Up](#appItUp)
   - [\__init__.py](#init)
-  - [routes.py](#routes)
+  - [routes.py](#routesPy)
   - [run.py](#run)
   - [FLASK_APP](#flaskApp)
 - [Configuration](#config)
   - [config.py](#configPy)
 - [Requests](#requests)
+  - [Let's make a request](#makeRequest)
+- [Routes](#requests)
   - [Let's make a request](#makeRequest)
 
 <a id="prereq"></a>
@@ -43,6 +45,10 @@ In this example we will be using *Flask* to create such an application, though t
 My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
 If you're a back-end developer, this is not for you. You know what to do already. This is for our beginner front-end developers who want to hide their keys, nothing more.
+
+### Git/Github
+At some point in this project, you will need to create a git repo. At what point in the application you integrate version-control is up to you, but having basic git-skills is needed for when we host the finished-product on *Heroku.*
+
 
 <a id="theApp"></a>
 
@@ -106,6 +112,7 @@ C:\> activate flaskenv
 
 <br>
 
+### pip
 
 
 Once your environment is activated, you can start installing your packages. The first package you will need is `pip`, as this is how we will be downloading our packages. I know this may appear a bit strange to download a package-manager inside a package-manager, but it demonstrates the flexibility of using `conda`.
@@ -125,6 +132,14 @@ Once you install `pip`, you can install `flask` using `pip`.
 
 ```
 (flaskenv) C:\> pip install flask
+
+```
+
+<br>
+
+### requirements.txt
+```
+(flaskenv) C:\> pip freeze > requirements.txt
 
 ```
 
@@ -182,7 +197,7 @@ This is how inheritance works in Python. The SQLAlchemy class (the child class) 
 Passing `__name__` to `Flask` tells Python the proper way to execute the file. This has to do with how Python executes programs. For more information, you may reference [this stackoverflow post](https://stackoverflow.com/questions/419163/what-does-if-name-main-do).
 
 
-<a id="routes"></a>
+<a id="routesPy"></a>
 
 ### routes.py
 
@@ -508,13 +523,62 @@ The first thing you need to do is [download the Heroku CLI](https://devcenter.he
 
 We will be using Heroku's free plan, because it's free. The catch, however, is that your application will turn off after 30 minutes. If you decide to upgrade your plan to `hobby`, it's only about $7 a month depending on your site's traffic.
 
+### Gunicorn
+```
+(flaskenv) C:\api-app\> pip install gunicorn
+```
+<br>
+
+[Gunicorn](https://gunicorn.org/) is a "Python WSGI HTTP Server for UNIX." Basically it will provide the production server for our application. 
 
 
+### Procfile
+We need to tell Heroku how to run our application &mdash; this is where the `Procfile` comes in. In the `Procfile` we will tell our `dyno` (the server instance our application is running on) what it should do once the server starts up.
 
+Create a new file in the root-directory named `Procfile` &mdash; no extensions, simply **Procfile**
+```
+api-app/
+  app/
+    __init__.py
+    routes.py
+  run.py
+  config.py
+  requirements.txt
+  Procfile
+```
+<br>
 
+Inside your `Procfile`, add the following code:
 
+```
+web: gunicorn: run:app
+```
+<br>
 
+First, `web` defines our process &mdash; this tells our `dyno` that we want a web-server. Second, we pass `run:app` to `gunicorn` to start our server, where `run` refers to `run.py` and `app` refers to the `app` we've created, i.e., the one imported in `run.py`.
 
+Now that our serve is in place, let's  configure our environment variables.
+
+### heroku config
+
+You can configure environment variables in two ways with Heroku:
+1. Through the Heroku dashboard on their site
+2. Through the `Heroku CLI`
+
+Since this is a programming tutorial, we'll be using the CLI to configure the two environment variables used in this application.
+
+Run the following in the terminal:
+
+```commandline
+(flaskenv) C:\api-app\>heroku config:set FLASK__APP=run.py
+
+...
+
+(flaskenv) C:\api-app\>heroku config:set API_KEY=<YOUR_API_KEY>
+```
+<br>
+
+### git push heroku master
 
 
 
