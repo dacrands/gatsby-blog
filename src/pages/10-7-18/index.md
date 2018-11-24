@@ -44,14 +44,14 @@ In this example we will be using *Flask* to create such an application, though t
 - Python 3
 - Git/Github
 
-My goal is to make this tutorial accessible to front-end developers with limited back-end experience, including developers who have never used Python. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
+My goal is to make this tutorial accessible to front-end developers with limited back-end and Python experience. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
 If you're a back-end developer, this is not for you. You know what to do already. This is for our beginner front-end developers who want to hide their keys, nothing more.
 
 <a id="git"></a>
 
 ### Git/Github
-At some point in this project, you will need to create a git repo. At what point in the application you integrate version-control is up to you, but having basic git-skills is needed for when we host the finished-product on *Heroku.*
+At some point in this project, you will need to create a git repo. At what point in the application you integrate version-control is up to you, but having basic git skills is needed for when we host the finished-product on *Heroku.*
 
 
 <a id="theApp"></a>
@@ -63,7 +63,7 @@ At some point in this project, you will need to create a git repo. At what point
 
 Here is [Github repo](https://github.com/dacrands/flask-blog-tutorial) for what we're building.
 
-This app is an extremely minimal Flask app. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. Of course, there will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
+We'rea building a very minimal Flask app. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. There will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
 If you're looking for an in-depth introduction to Flask, Miguel Ginberg's [Flask mega tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is excellent.
 
@@ -109,7 +109,7 @@ This will print a list of your environments to the console. Learn more about [ma
 I will demonstrate how to activate a Python environment on a Windows OS, simply because Windows users have it hard enough as it is.
 
 
-I love *PowerShell,* but when it comes to Python virtual-environments, you'll want to use the command prompt. We have a lot to cover in this post, so I won't go in-depth as to why we are using the latter versus the former, though I encourage you to play around with both options to discover the answer organically.
+I love *PowerShell,* but when it comes to Python virtual-environments you'll want to use the command prompt. We have a lot to cover in this post, so I won't go in-depth as to why we are using the latter versus the former, though I encourage you to play around with both options to discover the answer organically.
 
 ```commandline
 C:\> activate flaskenv
@@ -148,9 +148,9 @@ Once you install `pip`, you can install `flask` using `pip`.
 (flaskenv) C:\api-app\> pip freeze > requirements.txt
 ```
 
-This will save your packages to a file that can be used to install your app dependencies.
-
 <br>
+
+This will save your packages to a file that can be used to install your app dependencies.
 
 Presuming everything went smoothly, we can move on to creating our app.
 
@@ -220,7 +220,7 @@ def index():
 
 For brevity sake, we won't delve too much into the syntax here. Hopefully it's somewhat readily apparent what is happening here. If it's not, it will be as we create more routes.
 
-Now that we have a route created, we can import our routes into our `__init__.py` file.
+Now that we have a route created, we can import our routes into our *\__init\__.py* file.
 
 ```python
 # app/__init__.py
@@ -244,7 +244,7 @@ from app import app
 
 <br>
 
-That's all the file requires. To clarify,  `app` is the Flask instance we created in `__init__.py`, and it is a member of the `app` package. The `app` package refers to the `/app` folder in our directory, thus why in our `__init__.py` file we are able to import our `routes` from `app`.
+That's all the file requires. To clarify,  *app* is the Flask instance we created in *\__init\__.py*, and it is a member of the *app* package. The *app* package refers to the */app* folder in our directory, thus why in our *\__init\__.py* file we are able to import our *routes* from *app*.
 
 <!-- ```
 /app
@@ -260,7 +260,7 @@ That's all the file requires. To clarify,  `app` is the Flask instance we create
 (flaskenv) C:\api-app\>set FLASK_APP=run.py
 ```
 
-Flask will look for an environment `FLASK_APP` set to, in this case, `run.py`. This will instruct Flask on the proper way to import our application.
+Flask will look for an environment `FLASK_APP` set to, in this case, *run.py*. This will instruct Flask on the proper way to import our application.
 
 
 ### Run it!
@@ -276,9 +276,9 @@ If everything goes smoothly, you can visit your app at `http://127:0.0.0.1:5000/
 
 ## Configuration
 ---
-We are going to add a `config.py` file to our project. This is where the developer can define some variables that will be used throughout the application. It's a good place to create variables that the developer wants to keep secret, such as API-keys.
+We are going to add a *config.py* file to our project. This is where the developer can define some variables that will be used throughout the application. It's a good place to create variables that the developer wants to keep secret, such as API-keys.
 
-Once you add the `config.py` file, your project structure should look something like this:
+Once you add the *config.py* file, your project structure should look something like this:
 
 ```
 api-app/
@@ -290,7 +290,7 @@ api-app/
 ```
 <br>
 
-Once we create our `config.py`, we need to tell our `app` to use it. Here config is referencing our file `config.py` and not an installed library.
+Once we create our *config.py*, we need to tell our *app* to use it. Here config is referencing our file *config.py* and not an installed library.
 
 ```python
 # app/__init__.py
@@ -334,9 +334,9 @@ $ export API_KEY=someKey
 
 <br>
 
-As I mentioned this app is minimal, thus our `config.py` only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as a JS-object &mdash; a collection of *key*, *value* pairings. 
+As I mentioned this app is minimal, thus our *config.py* only contains one *key*. Yes, a *key*. For JavaScript developers, you can think of our configuration object as a JS-object &mdash; a collection of *key*, *value* pairings. 
 
-For example, accessing the `API_KEY` defined in our `config.py` file will look something like this:
+For example, accessing the `API_KEY` defined in our *config.py* file will look something like this:
 
 ```python
 from app import app
@@ -347,10 +347,7 @@ API_KEY = app.config['API_KEY']
 ```
 <br>
 
-I hope it's becoming clearer what is taking place in our `__init__.py` file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
-
-## Debug
----
+I hope it's becoming clearer what is taking place in our *\__init\__.py* file. If not, there is no issue with treating this application as a bit of a black-box while you continue learning. I made it made it clear the purpose of this application is hiding your API-key from wrong-doers. For front-end developers with no interest in learning Python, not having a deep-understanding of Python modules is okay. In other words, this blog post is getting quite lengthy and I don't have time to elaborate on the nuances of Python here.
 
 
 <a id="requests"></a>
@@ -440,7 +437,7 @@ I encourage you to play around a bit with the `requests` library. Otherwise, let
 ## Routes
 ---
 
-Make the following modifications to `app/routes.py`:
+Make the following modifications to *app/routes.py*:
 ```python
 from app import app
 from flask import jsonify
@@ -543,9 +540,9 @@ We will be using Heroku's free plan, because it's free. The catch, however, is t
 
 
 ### Procfile
-We need to tell Heroku how to run our application &mdash; this is where the `Procfile` comes in. In the `Procfile` we will tell our `dyno` (the server instance our application is running on) what it should do once the server starts up.
+We need to tell Heroku how to run our application &mdash; this is where the *Procfile* comes in. In the *Procfile* we will tell our `dyno` (the server instance our application is running on) what it should do once the server starts up.
 
-Create a new file in the root-directory named `Procfile` &mdash; no extensions, simply **Procfile**
+Create a new file in the root-directory named *Procfile* &mdash; no extensions, simply **Procfile**
 ```
 api-app/
   app/
@@ -558,14 +555,14 @@ api-app/
 ```
 <br>
 
-Inside your `Procfile`, add the following code:
+Inside your *Procfile*, add the following code:
 
 ```
 web: gunicorn: run:app
 ```
 <br>
 
-First, `web` defines our process &mdash; this tells our `dyno` that we want a web-server. Second, we pass `run:app` to `gunicorn` to start our server, where `run` refers to `run.py` and `app` refers to the `app` we've created, i.e., the one imported in `run.py`.
+First, `web` defines our process &mdash; this tells our `dyno` that we want a web-server. Second, we pass `run:app` to `gunicorn` to start our server, where `run` refers to *run.py* and `app` refers to the `app` we've created, i.e., the one imported in *run.py*.
 
 Now that our serve is in place, let's  configure our environment variables.
 
@@ -590,7 +587,7 @@ Run the following in the terminal:
 
 Now comes the moment of truth &mdash; pushing your `master` branch to Heroku. Two item checklist before pushing to Heroku:
 
-1. Make sure all necessary packages are in your `requirements.txt` file:
+1. Make sure all necessary packages are in your *requirements.txt* file:
 ```
 (flaskenv) C:\api-app\> pip freeze > requirements.txt
 ```
@@ -617,10 +614,52 @@ When the site opens in your browser, you should see your JSON.
 
 And that's about it. When you're ready to show your app to people you can upgrade your plan and the server won't turn off after thirty-minutes.
 
+## CORS
+---
 
+Now you are able to access your data by making fetch requests to your Heroku app. Sadly, as our app stands, other's will also be able to make ajax to your API. To prevent this from happening, we will be implementing CORS.
+
+Here is a definition from [MDN's article on CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS):
+
+>Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin. A web application makes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, and port) than its own origin.
+
+For our purposes, we will only be focusing one part of CORS &mdash; `Access-Control-Allow-Origin`
+
+The `Access-Control-Allow-Origin` is configured in our Flask app and instructs the app which "origins" to provide access to. Here the origin is the domain of the client making the request. 
+
+### Flask-CORS
+
+We'll use [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) to configure CORS for our Flask app.
+
+```
+(flaskenv) C:\api-app\> pip install flask-cors
+...
+(flaskenv) C:\api-app\> pip freeze > requirements.txt
+```
+
+<br>
+
+Now make the following modifications to *app/\__init\__.py*, replacing the URLs in the `origins` list with your own.
+
+```python
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app, origins=["https://yoururl.com", "https://www.yoururl.com"])
+
+from app import routes
+
+```
+<br>
+
+Now only the domain of your frontend application will be able to make ajax requests to your heroku app. `origins` can be a string or a list, so configure it accordingly. Make sure you include `https://` or `http://` and include both your naked and `www` domains, or else you will get a CORS error. There is a fair-amount to CORS, so I encourage you to do some more research on the topic.
+ 
 ## Conclusion
 
-This is only a start. Obviously anyone could potentially create target your heroku-app since we did not implement CORS, but it's better than leaving your keys in the code or making API calls directly from the client. By implementing an app such as this you demonstrate you're a front-end developer who is security conscious, which is important.
+By implementing an app such as this you demonstrate you're a front-end developer who is security conscious, which is important. This tutorial may have either scared you or excited you about backend workflows, but now your API is safe and that's important.   
+
+As for me, this blog took a very long time to write so I'm going to relax and work on a front-end blog.
 
 
 

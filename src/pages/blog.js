@@ -103,7 +103,7 @@ const SecondPage = ( {data}) => (
 
 export const pageQuery = graphql`
   query BlogQuery {
-    allMarkdownRemark(limit: 10) {
+    allMarkdownRemark(limit: 100) {
       edges {
         node {
           frontmatter {
