@@ -39,12 +39,11 @@ In this example we will be using *Flask* to create such an application, though t
 ## Prerequisites
 ---
 
-- an API you're interested in and any necessary keys. [Here a big list of APIs](https://apilist.fun/)
+- an API you're interested in and any necessary keys. [Here is a big list of APIs](https://apilist.fun/)
 - Basic command-line skills
-- Python 3
 - Git/Github
 
-My goal is to make this tutorial accessible to front-end developers with limited back-end and Python experience. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
+My goal is to make this tutorial accessible to front-end developers with limited back-end and/or Python experience. Luckily, Python syntax is very semantic and intuitive, so hopefully developers from other stacks will have no problem following along with the examples used in this post.
 
 If you're a back-end developer, this is not for you. You know what to do already. This is for our beginner front-end developers who want to hide their keys, nothing more.
 
@@ -63,7 +62,7 @@ At some point in this project, you will need to create a git repo. At what point
 
 Here is [Github repo](https://github.com/dacrands/flask-blog-tutorial) for what we're building.
 
-We'rea building a very minimal Flask app. We don't need a database, we just need a server to make requests to our API and pass JSON to our React/Redux app. There will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
+We're are building a very minimal Flask app. We don't need a database or authentication, we just need a server to make requests to our API and pass JSON to our React/Redux app. There will be vulnerabilities in this app, but your API-key will be safe and others will take note of your effort to keep it secret (hopefully).
 
 If you're looking for an in-depth introduction to Flask, Miguel Ginberg's [Flask mega tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) is excellent.
 
@@ -130,7 +129,7 @@ Once your environment is activated, you can start installing your packages. The 
 
 <br>
 
-Now we can use `pip` to install our packages, but always make sure your environment is active before doing so. If your environment is not active, not only will you be downloading all of those packages globally on your machine, but you will not be able to save the packages you use to the `requirements.txt` file, which is used to automatically download all of the packages in your application (Think of the `requirements.txt` as a `package.json` because it essentially is).
+Now we can use `pip` to install our packages, but always make sure your environment is active before doing so. If your environment is not active, not only will you be downloading all of those packages globally on your machine, but you will not be able to save the packages you use to the *requirements.txt* file. The *requirements.txt* is Flask's version of *package.json*, i.e., a list of your applications dependencies. 
 
 
 
@@ -150,16 +149,17 @@ Once you install `pip`, you can install `flask` using `pip`.
 
 <br>
 
-This will save your packages to a file that can be used to install your app dependencies.
+Now you can open *requirements.txt* and view your app's dependencies. 
 
-Presuming everything went smoothly, we can move on to creating our app.
+Be sure to run  `pip freeze > requirements.txt` whenever you add a new package.
+
 
 <a id="appItUp"></a>
 
 ## App It Up
 ---
 
-Create a new directory `api-app` with the following structure:
+Create a new directory *api-app* with the following structure:
 
 ```
 api-app/
@@ -218,7 +218,20 @@ def index():
 
 <br>
 
-For brevity sake, we won't delve too much into the syntax here. Hopefully it's somewhat readily apparent what is happening here. If it's not, it will be as we create more routes.
+For JavaScript developers this syntax may look a bit strange. First, `def index()` defines a funtion named index. Second, `@app.route('/')` is what's known as a [Python decorator](https://www.thecodeship.com/patterns/guide-to-python-function-decorators/),
+which is sort of like a callback function. To clarify things, let's translate this to Express, a popular NodeJS web framework:
+
+```javascript
+app.get('/', function(req, res){
+  res.send('hello world');
+});
+```
+<br>
+
+Both of these apps are doing the same thing. In Python, `@` before a function name makes that function a decorator. Decorators, a higer-order function, are followed by a function, which is passed as an argument to the decorator.
+
+
+
 
 Now that we have a route created, we can import our routes into our *\__init\__.py* file.
 

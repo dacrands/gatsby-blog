@@ -125,7 +125,7 @@ Once we have our list, it's just a matter of applying the logic from earlier.
 ```python
 for logo in logoList:
     logoReq = requests.get("https://raw.githubusercontent.com/gilbarbara/logos/master/logos/{0}.svg".format(logo))
-    if logoReq == 200:
+    if logoReq.status_code == 200:
         logoSvg = open("{0}-logo.svg".format(logo), "w")
         logoSvg.write(logoReq.text.rstrip("\n"))
         logoSvg.close()
