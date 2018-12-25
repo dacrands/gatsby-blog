@@ -1,10 +1,4 @@
-<p align="center">
-  <a href="https://next.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-
-# Gatbsy Blog
+# Dave's Blog
 
 GatsbyJS build hosted on gitpages. Features a markdown blog that supports YAML front matter.
 
