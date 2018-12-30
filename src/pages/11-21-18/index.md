@@ -133,14 +133,76 @@ def index():
 <br />
 
 
-## How it works
+## Uploading Files
 ---
-When a user signs up, we create use the user's id to create a directory:
+I won't delve into the authentication aspect of this application because it's fairly trivial. In terms of the file-uploading, users must be logged in to upload and download files. Additionally, users are unable to modify or access the files of other users.
+
+Now let's take a look at the file-uploading logic. 
+
+### Check the File(s)
+Before a user upload's a file, we need to check a number of things.
+
+1. Is the `POST` request sending files?
+
+    We only want to be implementing logic if user is uploading files, otherwise
+    someone is using the route improperly and will be redirected.
+    ```python
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    ``` 
+<br/>
+
+2. Check to see if there is a file in the request.
+    
+    So we already know that the response object contains the files key,
+    but does it contain any files? That's what is being asked here.
+
+    ```python
+    file = request.files['file']
+    # if user does not select file, browser also
+    # submit an empty part without filename
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    ``` 
+<br/>
+
+3. Make sure we support the file extension and pass it to `secure_filename` (described above)
+
+    ```python
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+    ``` 
+<br/>
+
+4. Ensure user doesn't already have a file with the same name.
+
+     To prevent naming collisions, each file name must be unique.
+     Note the filename includes the extension, so a user can
+     have `user.docx` and `user.ppt` but not two `user.docx` files.
+
+    ```python
+    for f in files:                
+        if f.name == filename:
+            flash('You already have a file with that name! Please rename your file and upload.')
+        return redirect(url_for('index'))
+    ``` 
+<br/>
+
+### User Folders
+All files are uploaded to an `UPLOAD_FOLDER` whose configured in `config.py`
+
+Each user has a designated directory to upload files to, which is named using the user's id. 
+Whenever a user upload's a file, we check to see if this user has a folder via `os.path.exists()` If the user doesn't have a folder, we create one using `os.mkdir()`
 
 ```python
-
+if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))):
+    os.mkdir(os.path.join(
+        app.config['UPLOAD_FOLDER'], 
+        str(current_user.id)))
 ```
-<br />
+<br/>
 
 
 ## Schemas
