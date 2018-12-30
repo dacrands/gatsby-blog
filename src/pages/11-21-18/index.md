@@ -227,6 +227,7 @@ The database is built on a one-to-many between the *\<User\>* and *\<File\>* mod
 
 ### User Schema
 
+
 ```python
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
