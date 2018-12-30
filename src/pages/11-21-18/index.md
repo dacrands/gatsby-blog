@@ -20,14 +20,14 @@ The solution is to host your files on an [Amazon S3](https://aws.amazon.com/s3/)
 
 This application is a highly modified version of [Flask's documentation on file-uploading](http://flask.pocoo.org/docs/1.0/patterns/fileuploads/). Before I present the code, here are a few key-points:
 
-- **It's important to designate what files users can upload.** This ensures no one will upload a file that runs on our server and causes damage, such as those with a `.bash` file-extension.
+- **It's important to designate what files users can upload.** This ensures no one will upload a file that runs on our server and causes damage, such as those with a *.bash* file-extension.
 
   ```python
   ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'docx', 'xlsx'])
   ```
   <br/>
 
-- **You need to secure your file names.** We import `secure_filename` from `werkzeug` to, well, secure our filenames before saving it. Here is a description of `secure_filename` from the docs:
+- **You need to secure your file names.** We import *secure_filename* from *werkzeug* to, well, secure our filenames before saving it. Here is a description of *secure_filename* from the docs:
   > Pass it a filename and it will return a secure version of it. This filename can then safely be stored on a regular file system and passed to os.path.join(). The filename returned is an ASCII only string for maximum portability.
 
 <br/>
@@ -44,7 +44,7 @@ This application is a highly modified version of [Flask's documentation on file-
   ```
   <br/>
 
-Now that we have a 
+Now that we covered some of the key points, let us take a look at some code.
 
 <!-- Once users authenticate their account, they may upload files with the following extensions:
 
@@ -67,7 +67,9 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'docx', 'xl
 ## The Heart of the App
 ---
 
-Here is the primary logic of the application. It has not been refactored or cleaned up at all, since I've been converting this to us *S3*. 
+Here is the primary logic of the application. It has not been refactored or cleaned up at all since I've been converting this to *S3*. If I were to modify this, I would move the file validation and saving logic to separate functions, but for the purposes of this tutorial having all the logic in one place is more convenient.
+
+If the code below doesn't make much sense, don't worry. In the next section I will be break down precisely what's happening here.
 
 ```python
 import os
@@ -82,11 +84,9 @@ from app.forms import LoginForm, RegistrationForm, DeleteUserForm
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'docx', 'xlsx'])
 
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 @app.route('/', methods=['GET', 'POST'])
 @login_required
@@ -142,7 +142,7 @@ Now let's take a look at the file-uploading logic.
 ### Check the File(s)
 Before a user upload's a file, we need to check a number of things.
 
-1. Is the `POST` request sending files?
+1. Is the *POST* request sending files?
 
     We only want to be implementing logic if user is uploading files, otherwise
     someone is using the route improperly and will be redirected.
@@ -168,7 +168,7 @@ Before a user upload's a file, we need to check a number of things.
     ``` 
 <br/>
 
-3. Make sure we support the file extension and pass it to `secure_filename` (described above)
+3. Make sure we support the file extension and pass it to *secure_filename* (described above)
 
     ```python
     if file and allowed_file(file.filename):
@@ -178,9 +178,10 @@ Before a user upload's a file, we need to check a number of things.
 
 4. Ensure user doesn't already have a file with the same name.
 
-     To prevent naming collisions, each file name must be unique.
+     Currently, each user has one folder to upload files to.
+     Thus, to prevent naming collisions, each file name must be unique.
      Note the filename includes the extension, so a user can
-     have `user.docx` and `user.ppt` but not two `user.docx` files.
+     have *user.docx* file and *user.ppt* file but not two *user.docx* files.
 
     ```python
     for f in files:                
@@ -191,10 +192,10 @@ Before a user upload's a file, we need to check a number of things.
 <br/>
 
 ### User Folders
-All files are uploaded to an `UPLOAD_FOLDER` whose configured in `config.py`
+All files are uploaded to an *UPLOAD_FOLDER* whose location is configured in *config.py* &mdash; all user folders are a child of this folder.
 
 Each user has a designated directory to upload files to, which is named using the user's id. 
-Whenever a user upload's a file, we check to see if this user has a folder via `os.path.exists()` If the user doesn't have a folder, we create one using `os.mkdir()`
+Whenever a user upload's a file, we check to see if this user has a folder via *os.path.exists()*. If the user doesn't have a folder, we create one using *os.mkdir()*
 
 ```python
 if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))):
@@ -204,10 +205,44 @@ if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user
 ```
 <br/>
 
+Once we have a folder for our user, we grab its absolute path and save it to a variable.
+This makes the code a bit cleaner for when we save the file. Note that *file* is referencing  *file = request.files['file']* from the *POST* request described above.
 
-## Schemas
+```python
+user_file_path = os.path.join(
+    app.config['UPLOAD_FOLDER'], str(current_user.id))
+# Save file 
+file.save(os.path.join(user_file_path, filename))
+```
+<br/>
+
+And that's about it in terms of the file-uploading logic. Now let's look at the database for this application.
+
+## Database
 ---
 
+First, let's cover some general information. This application's database uses *Postgresql* for deployment, *Sqlite3* for development, and was written using the *SQLAlchemy* ORM. 
+
+The database is built on a one-to-many between the *\<User\>* and *\<File\>* models, i.e., each *User* has a relationship to many objects in the *File* table. 
+
+### User Schema
+
+```python
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
+    files = db.relationship('File', backref='author', lazy='dynamic')
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password).decode('utf-8')
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return '<User {}>'.format(self.email)
+```
 
 
 
