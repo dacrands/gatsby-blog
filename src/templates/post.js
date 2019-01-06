@@ -32,7 +32,9 @@ export default function Template({ data }){
   const { markdownRemark: post } = data; 
 
   return (
-    <div style={{
+    <div
+    className="markdown"
+     style={{
       paddingBottom: "1.45rem",
       maxWidth: "600px",
       margin: "0 auto"}}>

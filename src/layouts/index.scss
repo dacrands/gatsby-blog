@@ -629,3 +629,16 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+
+.markdown {
+  h2,
+  h1
+   {
+    color: #484d53;
+  }
+  h3 {
+    color: #1d669b;
+    font-weight: normal;
+  }  
+}

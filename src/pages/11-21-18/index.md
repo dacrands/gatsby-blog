@@ -225,8 +225,8 @@ First, let's cover some general information. This application's database uses *P
 
 The database is built on a one-to-many between the *\<User\>* and *\<File\>* models, i.e., each *User* has a relationship to many objects in the *File* table. 
 
-### User Schema
-
+### Schemas
+Take note of the *file* attribute on the *\<User\>* model and the *user_id* attribute on the *\<File\>*, for this is how we connect the two tables.
 
 ```python
 class User(UserMixin, db.Model):
@@ -243,7 +243,29 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.email)
+
+class File(db.Model):
+    id = db.Column(db.Integer, primary_key=True)    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(120))
+    path = db.Column(db.String(240))
+    rel_path = db.Column(db.String(120))
+    def __repr__(self):
+        return '<File {}>'.format(self.path)
 ```
+<br />
+
+Here I will use a modified version of the [SQLAlchemy docs](https://docs.sqlalchemy.org/en/latest/orm/backref.html) to describe what is happening in the *file* attribute:
+
+> The above configuration establishes a collection of File objects on User called User.files. It also establishes a .user attribute on Address which will refer to the parent User object.
 
 
+I am also using *lazy='dynamic'*, which is a bit of a controversial issue. Essentially the argument is meant to deal with large databases and loading of collections, though I've uncovered some [discussions on github](https://github.com/mitsuhiko/flask-sqlalchemy/issues/435) that indicate it may be not improve performance. Either way, it is a bit beyond the scope of this post.
+
+## Conclusion
+---
+
+That's pretty much it. Despite the fact this project is very practically for the reasons mentioned earlier, it provided my first exposure to file uploading and I learned a fair-amount.
+
+However, the best thing to come from this application is that is led me to *S3*, which will enable me to do some really awesome things. 
 
