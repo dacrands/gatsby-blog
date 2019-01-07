@@ -5,8 +5,6 @@ title: 'How NOT to Create a Dropbox Clone'
 tags: ['Flask','Python','os library']
 --- 
 
-*This post is a WIP*
-
 ![flask file app](https://i.imgur.com/LE7G4bH.jpg)
 
 I recently built a file-hosting application using Flask. Nothing fancy &mdash; users can upload, download, and delete files. The catch, however, is that the files are saved directly on the server, and that's not good. 
