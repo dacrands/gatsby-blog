@@ -5,6 +5,8 @@ title: 'Connecting Your React Front-end and Your Flask Back-end'
 tags: ['React','GatsbyJS','Flask']
 --- 
 
+*This post is as WIP*
+
 ![cookies](https://images.unsplash.com/photo-1512668033346-09cfb0d8597b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60)
 
 Alright, so you feel pretty strong in your frontend development skills, learned a framework like React, and now want build some back-end applications. You create some APIs, learn about databases, authentication, all is well.
@@ -23,7 +25,7 @@ The basic idea is that if the front-end application submits valid login credenti
 
 ## Flask
 ---
-I like Flask a lot, primarily because I like Python a lot. Regardless, this general idea can be applied by developers of any stack.
+I like Flask a lot, primarily because I like Python a lot. Regardless, this general ideas discussed here can be applied by developers of any stack.
 
 First, let's look at some of the tools that make this possible. We will break down these imports one by one.
 
