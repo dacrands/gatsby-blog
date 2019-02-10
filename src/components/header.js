@@ -1,21 +1,23 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import styled from 'styled-components';
+import React from "react";
+import Link from "gatsby-link";
+import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
-  // background: #1e85d0;  
-  background: rgb(35,40,45);  
+  // background: #1e85d0;
+  /* background: rgb(35,40,45);   */
   margin-bottom: 1.45rem;
+  border-bottom: 1px solid #dadada;
 `;
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 1.45rem 1.0875rem;
+  padding: 0.45rem 0.0875rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-`
+`;
 
 const Links = styled.ul`
   // outline: 2px dashed red;
@@ -25,14 +27,14 @@ const Links = styled.ul`
   padding: 0;
   flex-wrap: wrap;
   li {
-  // outline: 3px dashed orange;
-   margin: 0 1rem;
-   padding: .45rem;
+    // outline: 3px dashed orange;
+    margin: 0 1rem;
+    padding: 0.45rem;
   }
 
   a {
     text-decoration: none;
-    color: #f1f1f1;
+    color: #6f7477;
     display: block;
 
     &:hover {
@@ -47,30 +49,34 @@ const Links = styled.ul`
 const Header = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
-      <h1 style={{ margin: 0 }}>
+      <h2 style={{ margin: 0 }}>
         <Link
-          exact to="/"
+          exact
+          to="/"
           style={{
-            color: '#f1f1f1',
+            color: " #6f7477",
             // color: 'rgb(35,40,45)',
-            textDecoration: 'none',
+            alignSelf: "center",
+            textDecoration: "none"
           }}
-          activeStyle= {{
-            color: '#f9f9f9',            
-            color: '#1e85d0',                    
+          activeStyle={{
+            color: "#f9f9f9",
+            color: "#1e85d0"
           }}
         >
-          {siteTitle}
+          {/* {siteTitle} */}
+          Crandal<span style={{ color: "rgb(35,40,45)" }}>logs</span>
         </Link>
-      </h1>
+      </h2>
       <Links>
         <li>
-          <Link 
-            exact to="/blog"
-            activeStyle= {{
-              color: '#f9f9f9',            
-              color: 'rgb(35,40,45)',
-              color: '#1e85d0',                     
+          <Link
+            exact
+            to="/blog"
+            activeStyle={{
+              color: "#f9f9f9",
+              color: "rgb(35,40,45)",
+              color: "#1e85d0"
             }}
           >
             Blog
@@ -78,13 +84,13 @@ const Header = ({ siteTitle }) => (
         </li>
         <li>
           <a href="https://dcrands.com">Portfolio</a>
-        </li>        
+        </li>
         <li>
           <a href="https://github.com/dacrands">Github</a>
-        </li>        
-      </Links>      
+        </li>
+      </Links>
     </HeaderContainer>
   </HeaderWrapper>
-)
+);
 
-export default Header
+export default Header;

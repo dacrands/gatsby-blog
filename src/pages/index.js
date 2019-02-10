@@ -1,51 +1,59 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react";
+import Link from "gatsby-link";
 
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import CssLogo from '../assets/logos/css-3-logo.svg';
-import ReactLogo from '../assets/logos/react-logo.svg';
-import ReduxLogo from '../assets/logos/redux-logo.svg';
-import SassLogo from '../assets/logos/sass-logo.svg';
-import PostmanLogo from '../assets/logos/postman-logo.svg';
-import WebpackLogo from '../assets/logos/webpack-logo.svg';
-import NodeLogo from '../assets/logos/nodejs-logo.svg';
-import HerokuLogo from '../assets/logos/heroku-logo.svg';
-import JsLogo from '../assets/logos/js-logo.svg';
-import HtmlLogo from '../assets/logos/html-5-logo.svg';
-import FlaskLogo from '../assets/logos/flask-logo.svg';
+import CssLogo from "../assets/logos/css-3-logo.svg";
+import ReactLogo from "../assets/logos/react-logo.svg";
+import ReduxLogo from "../assets/logos/redux-logo.svg";
+import SassLogo from "../assets/logos/sass-logo.svg";
+import PostmanLogo from "../assets/logos/postman-logo.svg";
+import WebpackLogo from "../assets/logos/webpack-logo.svg";
+import NodeLogo from "../assets/logos/nodejs-logo.svg";
+import HerokuLogo from "../assets/logos/heroku-logo.svg";
+import JsLogo from "../assets/logos/js-logo.svg";
+import HtmlLogo from "../assets/logos/html-5-logo.svg";
+import FlaskLogo from "../assets/logos/flask-logo.svg";
 
+const H1 = styled.h1.attrs({
+  color: props => props.color || "#1e85d0"
+})`
+  color: ${props => props.color};  
+`;
 
 const H3 = styled.h3.attrs({
-  weight: props => props.weight || ''
+  weight: props => props.weight || "400"
 })`
   font-weight: ${props => props.weight};
+  color: "#1e85d0" span {
+    color: "red";
+  }
 `;
 
 const Ul = styled.ul`
   list-style: none;
-  margin: 0;  
+  margin: 0;
 `;
 
 const Li = styled.li`
   h3 {
-    margin-right: .75rem;
+    margin-right: 0.75rem;
   }
 `;
 
 const StyledLink = styled(Link)`
-  display: block;  
+  display: block;
   transition: all 200ms ease;
   text-decoration: none;
   color: #1e85d0;
-  padding: 1em;  
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  padding: 1em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   position: relative;
   p {
     margin: 0;
     &:last-of-type {
-      color: rgb(135,140,145);
-    }    
+      color: rgb(135, 140, 145);
+    }
   }
 
   span {
@@ -58,40 +66,33 @@ const StyledLink = styled(Link)`
 
   &:hover {
     background: #ffffff;
-    // color: rgb(35,40,45);
-    // color: #1e85d0;
     box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
   }
 `;
 
 const LandingWrapper = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '34vh'
+  background: props => props.bg || "#ffffff",
+  height: props => props.height || "34vh"
 })`
   position: relative;
   height: 100%;
   /* min-height: ${props => props.height}    */
 `;
 
-
-const H1 = styled.h1.attrs({
-  color: props => props.color || '#1e85d0'
-})`
-  color: ${props => props.color}
-  // color: white;
-`;
-
 const LandingContainer = styled.div.attrs({
-  background: props => props.bg || '#ffffff',
-  height: props => props.height || '30vh'
+  background: props => props.bg || "#ffffff",
+  height: props => props.height || "30vh"
 })`
   margin: 0 auto;
-  max-width: 960px;  
+  max-width: 960px;
   height: 100%;
   min-height: ${props => props.height};
   display: flex;
   flex-direction: column;
   justify-content: center;
+  p {
+    max-width: 500px;
+  }
 `;
 
 const Marquee = styled.section`
@@ -127,31 +128,28 @@ const MarqueeSpan = styled.span`
 const svgStyle = {
   width: "83px",
   height: "83px",
-  display: "inline-block",
-}
-
+  display: "inline-block"
+};
 
 function sortBlogs(blogs) {
   return blogs.allMarkdownRemark.edges.sort((post1, post2) => {
     return post1.node.frontmatter._id - post2.node.frontmatter._id;
-  })
+  });
 }
 
 const IndexPage = ({ data }) => (
   <div>
     <LandingWrapper>
       <LandingContainer>
-        <H1 style={{ marginTop: "1.45rem" }}>
-          Full-stack Web Developer
+        <H1 style={{ marginTop: "1.45rem" }}>          
+          I'm David Crandall 
         </H1>
-        <H3 weight="400">
-          I love building <span style={{ color: "#1e85d0" }}>awesome</span> websites.
-        </H3>        
+        
+        <p>This is my blog where I write about programming.</p>
       </LandingContainer>
     </LandingWrapper>
 
     <LandingWrapper height="34vh">
-      {/* <Landing bg="#f4f4f4" height="34vh"/>       */}
       <Marquee>
         <MarqueeInner>
           <MarqueeSpan>
@@ -189,24 +187,23 @@ const IndexPage = ({ data }) => (
       <LandingContainer>
         <H1>Blog</H1>
         <Ul>
-          {
-            sortBlogs(data).slice(5).reverse().map(post => (
+          {sortBlogs(data)
+            .slice(5)
+            .reverse()
+            .map(post => (
               <Li>
-                <StyledLink
-                  to={post.node.frontmatter.path}
-                >
+                <StyledLink to={post.node.frontmatter.path}>
                   <p>{post.node.frontmatter.title}</p>
-                  <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
+                  <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, "")}</p>
                 </StyledLink>
               </Li>
-            ))
-          }
+            ))}
         </Ul>
         <Link to="/blog">Read more blogs &rarr;</Link>
       </LandingContainer>
     </LandingWrapper>
   </div>
-)
+);
 
 export const pageQuery = graphql`
   query IndexQuery {
@@ -223,6 +220,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default IndexPage
+export default IndexPage;

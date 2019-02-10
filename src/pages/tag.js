@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react";
+import Link from "gatsby-link";
 
 const ThirdPage = () => (
   <div>
@@ -7,6 +7,6 @@ const ThirdPage = () => (
     <p>Welcome to page 3</p>
     <Link to="/">Go back to the homepage</Link>
   </div>
-)
+);
 
-export default ThirdPage
+export default ThirdPage;

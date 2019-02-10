@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Button = styled.button`
   position: fixed;
@@ -17,21 +17,18 @@ const Button = styled.button`
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 `;
 
-
 class ScollButton extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { show:false }
-    
+    this.state = { show: false };
   }
 
   componentDidMount() {
-    document.addEventListener('scroll', () => {
+    document.addEventListener("scroll", () => {
       window.scrollY > 500
-      ? this.setState( {show:true})
-      : this.setState( {show:false})
-    })
+        ? this.setState({ show: true })
+        : this.setState({ show: false });
+    });
   }
 
   scrollTop() {
@@ -40,14 +37,14 @@ class ScollButton extends Component {
 
   render() {
     return (
-      <Button 
-      style={this.state.show ? {display:"block"} : {display:"none"}} 
-        onClick={this.scrollTop}>
+      <Button
+        style={this.state.show ? { display: "block" } : { display: "none" }}
+        onClick={this.scrollTop}
+      >
         Back to Top
       </Button>
-    )
+    );
   }
-
-};
+}
 
 export default ScollButton;

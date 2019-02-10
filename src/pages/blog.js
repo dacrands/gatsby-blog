@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import styled from 'styled-components';
+import React from "react";
+import Link from "gatsby-link";
+import styled from "styled-components";
 
 const Tags = styled.ul`
   // outline: 4px dashed red;
@@ -31,13 +31,13 @@ const Tag = styled.li`
 const Ul = styled.ul`
   list-style: none;
   margin: 0;
-  margin-bottom: 1.45rem;  
+  margin-bottom: 1.45rem;
 `;
 
 const Li = styled.li`
   // border: 1px solid #dadada;
   margin-bottom: 1.45rem;
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   &:hover {
     background: #ffffff;
     box-shadow: 0 0 6px rgba(30, 133, 208, 0.6);
@@ -46,9 +46,9 @@ const Li = styled.li`
 
 const LiText = styled.div`
   p {
-    margin: 0;    
+    margin: 0;
     &:last-of-type {
-      color: rgb(135,140,145);
+      color: rgb(135, 140, 145);
     }
   }
 `;
@@ -66,40 +66,36 @@ const StyledLink = styled(Link)`
 function sortBlogs(blogs) {
   return blogs.allMarkdownRemark.edges.sort((post2, post1) => {
     return post1.node.frontmatter._id - post2.node.frontmatter._id;
-  })
+  });
 }
 
-const SecondPage = ( {data}) => (
+const SecondPage = ({ data }) => (
   <div>
     <h1 style={{ color: "#1e85d0" }}>Blog</h1>
-    <h3 style={{ fontWeight:"100" }}>Writings and tutorials about programming.</h3>
-    <Ul>    
-        {          
-          sortBlogs(data).map(post => (
-            <Li>                          
-              <StyledLink 
-                to={post.node.frontmatter.path}
-              >    
-                <LiText>
-                  <p>{post.node.frontmatter.title}</p>
-                  <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, '')}</p>
-                </LiText>                            
-                <Tags>
-                  {
-                  post.node.frontmatter.tags.map(tag =>(
-                    <Tag>{tag}</Tag>
-                  ))
-                  }
-                </Tags>
-              </StyledLink>             
-            </Li>
-          ))
-        }
-      </Ul>
+    <h3 style={{ fontWeight: "100" }}>
+      Writings and tutorials about programming.
+    </h3>
+    <Ul>
+      {sortBlogs(data).map(post => (
+        <Li>
+          <StyledLink to={post.node.frontmatter.path}>
+            <LiText>
+              <p>{post.node.frontmatter.title}</p>
+              <p>{post.node.frontmatter.path.replace(/^\/|\/$/g, "")}</p>
+            </LiText>
+            <Tags>
+              {post.node.frontmatter.tags.map(tag => (
+                <Tag>{tag}</Tag>
+              ))}
+            </Tags>
+          </StyledLink>
+        </Li>
+      ))}
+    </Ul>
 
-      <Link to="/"> &larr; Home</Link>
+    <Link to="/"> &larr; Home</Link>
   </div>
-)
+);
 
 export const pageQuery = graphql`
   query BlogQuery {
@@ -116,7 +112,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default SecondPage
-
+export default SecondPage;
